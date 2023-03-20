@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 
 function WelcomeScreen() {
-  return <View style={styles.container}><Text>WelcomeScreen</Text></View>;
+  return <View style={styles.container}>
+    <Text>Welcome!</Text>
+    <Text>You authenticated successfully!</Text>
+    </View>;
 }
 
 export default WelcomeScreen;

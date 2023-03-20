@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
+import AuthForm from "../components/Auth/AuthForm";
 
 function LoginScreen() {
-  return <View style={styles.container}>
-    <Text>Login Screen</Text>
-    </View>;
+  return (
+    <View style={styles.container}>
+      <Text>Login Screen</Text>
+      <AuthForm isLogin formText="Want to create a new account?"/>
+    </View>
+  );
 }
 
 export default LoginScreen;

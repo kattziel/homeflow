@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 
 function SignupScreen() {
-  return <View style={styles.container}>Signup Screen</View>;
+  return (
+    <View style={styles.container}>
+      <Text>Signup Screen</Text>
+    </View>
+  );
 }
 
 export default SignupScreen;

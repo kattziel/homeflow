@@ -14,12 +14,12 @@ export default Input;
 
 const styles = StyleSheet.create({
     inputContainer: {
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 4,
+        marginBottom: 4,
     },
     labelText: {
-        marginTop: 5,
-        marginBottom: 5
+        marginTop: 4,
+        marginBottom: 4
     },
     input: {
         backgroundColor: Colors.Yellow,

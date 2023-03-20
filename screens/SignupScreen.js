@@ -1,21 +1,13 @@
-import { View, StyleSheet } from "react-native";
 import AuthForm from "../components/Auth/AuthForm";
+import { createUser } from "../util/auth";
 
 function SignupScreen() {
-  return (
-    <View style={styles.container}>
-      <AuthForm formText="Already have an account? Sign in."/>
-    </View>
-  );
+
+  function signupHandler() {
+    createUser();
+  }
+  // connecting signupHandler to the AuthForm, cause it is where we are gathering the data
+  return <AuthForm />;
 }
 
 export default SignupScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    color: "red",
-    fontSize: "100px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

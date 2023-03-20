@@ -4,7 +4,7 @@
     "slug": "makemegrow",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/makemegrow_splashscreen.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/makemegrow_splashscreen.png",

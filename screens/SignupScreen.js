@@ -1,4 +1,4 @@
-import AuthForm from "../components/Auth/AuthForm";
+import AuthContent from "../components/Auth/AuthContent";
 import { createUser } from "../util/auth";
 
 function SignupScreen() {
@@ -7,7 +7,7 @@ function SignupScreen() {
     createUser();
   }
   // connecting signupHandler to the AuthForm, cause it is where we are gathering the data
-  return <AuthForm />;
+  return <AuthContent />;
 }
 
 export default SignupScreen;

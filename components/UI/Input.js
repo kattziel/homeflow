@@ -14,8 +14,11 @@ export default Input;
 
 const styles = StyleSheet.create({
     inputContainer: {
+      marginVertical: 8,
         marginTop: 4,
         marginBottom: 4,
+        width: 200,
+        padding: 20
     },
     labelText: {
         marginTop: 4,

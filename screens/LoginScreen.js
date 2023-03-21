@@ -1,10 +1,10 @@
 import { View, StyleSheet } from "react-native";
-import AuthForm from "../components/Auth/AuthForm";
+import AuthContent from "../components/Auth/AuthContent";
 
 function LoginScreen() {
   return (
     <View style={styles.container}>
-      <AuthForm isLogin/>
+      <AuthContent isLogin/>
     </View>
   );
 }

@@ -3,7 +3,7 @@ import { Colors } from "../../constants/Colors";
 
 function Button({ onPress, children }) {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable style={({pressed}) => [styles.pressableButton, pressed && styles.pressed]} onPress={onPress}>
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
@@ -14,16 +14,15 @@ function Button({ onPress, children }) {
 export default Button;
 
 const styles = StyleSheet.create({
+  pressableButton: {
+    alignItems: 'center',
+  },
   buttonContainer: {
-    backgroundColor: Colors.lightPink,
-    padding: 6,
-    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: Colors.Yellow,
     borderRadius: 4,
-    marginTop: 20,
-    marginBottom: 15,
-  },
-  buttonText: {
-    color: Colors.Yellow,
-  },
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 15,
+  }
 });

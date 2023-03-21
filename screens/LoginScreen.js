@@ -12,10 +12,10 @@ function LoginScreen() {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    color: "red",
-    fontSize: "100px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  // container: {
+  //   color: "red",
+  //   fontSize: "100px",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
 });

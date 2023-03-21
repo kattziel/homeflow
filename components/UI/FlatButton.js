@@ -14,13 +14,7 @@ function FlatButton({ onPress, children }) {
 export default FlatButton;
 
 const styles = StyleSheet.create({
-  button: {
-    marginHorizontal: 15
-},
-  text: {
-    textAlign: "center"
-  },
   pressed: {
-    opacity: 0.7
+    opacity: 0.5
   }
 });

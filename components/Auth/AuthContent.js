@@ -22,7 +22,7 @@ function AuthContent({ isLogin }) {
   function submitHandler(){};
 
   return (
-    <View style={styles.authContents}>
+    <View style={styles.authContent}>
       <AuthForm isLogin={isLogin} onSubmit={submitHandler} />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
@@ -36,15 +36,18 @@ function AuthContent({ isLogin }) {
 export default AuthContent;
 
 const styles = StyleSheet.create({
-  authContents: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.lightPink,
-    marginHorizontal: 32,
-    borderRadius: 8,
-    elevation: 2,
-  },
-//   buttons: {
-//     marginTop: 8,
-//   },
+    authContent: {
+        backgroundColor: Colors.lightPink,
+        marginHorizontal: 32,
+        marginTop: 32,
+        borderRadius: 4,
+    },
+    buttons: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    pressed: {
+        opacity: 0.7
+    }
 });

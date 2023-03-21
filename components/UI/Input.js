@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, TextInput } from "react-native";
-import {Colors} from '../../constants/Colors';
+import { Colors } from "../../constants/Colors";
 
 function Input({ label }) {
   return (
@@ -13,20 +13,15 @@ function Input({ label }) {
 export default Input;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-      marginVertical: 8,
-        marginTop: 4,
-        marginBottom: 4,
-        width: 200,
-        padding: 20
-    },
-    labelText: {
-        marginTop: 4,
-        marginBottom: 4
-    },
-    input: {
-        backgroundColor: Colors.Yellow,
-        borderRadius: 4,
-        height: 25
-    }
+  inputContainer: {
+    marginVertical: 8,
+    marginHorizontal: 10,
+  },
+  input: {
+    backgroundColor: "white",
+    borderRadius: 4,
+    height: 25,
+    marginTop: 4,
+    marginBottom: 4,
+  }
 });

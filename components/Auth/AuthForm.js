@@ -77,7 +77,7 @@ function AuthForm({ isLogin, onSubmit }) {
         )}
       </View>
       <View>
-        <Button onPress={submitHandler}>
+        <Button style={styles.button} onPress={submitHandler}>
           {isLogin ? "Log in" : "Sign up"}
         </Button>
       </View>

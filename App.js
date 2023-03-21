@@ -15,7 +15,7 @@ function AuthStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: Colors.lightViolet },
-        headerTintColor: "#ACCBEE",
+        headerTintColor: Colors.lightPink,
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
@@ -57,10 +57,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "#fff",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
 });

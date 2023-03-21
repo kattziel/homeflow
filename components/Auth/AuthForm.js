@@ -12,7 +12,7 @@ function AuthForm({ isLogin, onSubmit }) {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
-  function updateInputValueHandler() {
+  function updateInputValueHandler(inputType) {
     switch (inputType) {
       case "email":
         setEnteredEmail(enteredValue);
@@ -60,19 +60,21 @@ function AuthForm({ isLogin, onSubmit }) {
         <Input
           label="Password"
           value={enteredPassword}
-          secure
+          keyboardType="default"
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
+          secure
         />
 
         {!isLogin && (
           <Input
             label="Confirm password"
             value={enteredConfirmPassword}
-            secure
+            keyboardType="default"
             onUpdateValue={updateInputValueHandler.bind(
               this,
               "confirmPassword"
             )}
+            secure
           />
         )}
       </View>

@@ -2,12 +2,11 @@ import { View, StyleSheet } from "react-native";
 import AuthContent from "../components/Auth/AuthContent";
 
 function LoginScreen() {
-  return (
-      <AuthContent isLogin/>
-  );
+  function loginHandler() {
+  }
+  return <AuthContent isLogin onAuthenticate={loginHandler} />;
 }
 
 export default LoginScreen;
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

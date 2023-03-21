@@ -6,13 +6,22 @@ import Input from "../UI/Input";
 
 import { Colors } from "../../constants/Colors";
 
-function AuthForm({ isLogin, onSubmit }) {
+function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
+  // here I am receiving credentialsIsInvalid, so an object with mail, password, confirm mail and confirm password from authcontent.js; I am destructuring the object and assigning to each value new name, eg. emailIsInvalid etc.;
+
+  const {
+    email: emailIsInvalid,
+    confirmEmail: emailsDontMatch,
+    password: passwordIsInvalid,
+    confirmPassword: passwordsDontMatch,
+  } = credentialsInvalid;
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
-  function updateInputValueHandler(inputType) {
+  function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
       case "email":
         setEnteredEmail(enteredValue);
@@ -46,6 +55,7 @@ function AuthForm({ isLogin, onSubmit }) {
           value={enteredEmail}
           keyboardType="email-address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}
+          isInvalid={emailIsInvalid}
         />
 
         {!isLogin && (
@@ -54,6 +64,7 @@ function AuthForm({ isLogin, onSubmit }) {
             value={enteredConfirmEmail}
             keyboardType="email-address"
             onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
+            isInvalid={emailsDontMatch}
           />
         )}
 
@@ -63,6 +74,7 @@ function AuthForm({ isLogin, onSubmit }) {
           keyboardType="default"
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
           secure
+          isInvalid={passwordIsInvalid}
         />
 
         {!isLogin && (
@@ -75,6 +87,7 @@ function AuthForm({ isLogin, onSubmit }) {
               "confirmPassword"
             )}
             secure
+            isInvalid={passwordsDontMatch}
           />
         )}
       </View>
@@ -92,5 +105,5 @@ export default AuthForm;
 const styles = StyleSheet.create({
   form: {
     marginTop: 10,
-  }
+  },
 });

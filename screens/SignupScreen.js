@@ -7,7 +7,7 @@ function SignupScreen() {
     createUser();
   }
   // connecting signupHandler to the AuthForm, cause it is where we are gathering the data
-  return <AuthContent />;
+  return <AuthContent onAuthenticate={signupHandler}/>;
 }
 
 export default SignupScreen;

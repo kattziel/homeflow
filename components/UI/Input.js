@@ -1,7 +1,14 @@
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Colors } from "../../constants/Colors";
 
-function Input({ label, value, keyboardType, onUpdateValue, secure, isInvalid,  }) {
+function Input({
+  label,
+  value,
+  keyboardType,
+  onUpdateValue,
+  secure,
+  isInvalid,
+}) {
   return (
     <View style={[styles.inputContainer, isInvalid && styles.labelInvalid]}>
       <Text style={styles.labelText}>{label}</Text>
@@ -11,7 +18,7 @@ function Input({ label, value, keyboardType, onUpdateValue, secure, isInvalid,  
         secureTextEntry={secure}
         value={value}
         onChangeText={onUpdateValue}
-        />
+      />
     </View>
   );
 }
@@ -31,9 +38,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   labelInvalid: {
-    color: "red"
   },
   inputInvalid: {
-    backgroundColor: "red"
-  }
+    backgroundColor: Colors.Pink,
+  },
 });

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, ScrollView } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -49,21 +49,23 @@ function AuthContent({ isLogin, onAuthenticate }) {
     }
 
     onAuthenticate(email, password);
-    console.log(email, password, "- email and password from auth content")
+    console.log(email, password, "- email and password from auth content");
   }
 
   return (
     <View style={styles.authContent}>
-      <AuthForm
-        isLogin={isLogin}
-        onSubmit={submitHandler}
-        credentialsInvalid={credentialsInvalid}
-      />
-      <View style={styles.buttons}>
-        <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? "Create a new user" : "Log in instead"}
-        </FlatButton>
-      </View>
+      <ScrollView >
+        <AuthForm
+          isLogin={isLogin}
+          onSubmit={submitHandler}
+          credentialsInvalid={credentialsInvalid}
+        />
+        <View style={styles.buttons}>
+          <FlatButton onPress={switchAuthModeHandler}>
+            {isLogin ? "Create a new user" : "Log in instead"}
+          </FlatButton>
+        </View>
+      </ScrollView>
     </View>
   );
 }

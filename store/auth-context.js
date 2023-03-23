@@ -26,6 +26,7 @@ function AuthContextProvider({children}) {
     const value = {
         token: authToken,
         isAuthenticated: !!authToken,
+        // used only to render conditionally the screens in app.js
         authenticate: authenticate,
         logout: logout
     }

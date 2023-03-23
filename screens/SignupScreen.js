@@ -17,13 +17,10 @@ function SignupScreen() {
       const token = await createUser(email, password);
       authCtx.authenticate(token);
     } catch (error) {
-      console.log(error, "error content")
       Alert.alert(
         "Authentication failed!",
         "Could not sign you up, please check your credentials or try again later."
-        );
-        throw error;
-    } finally {
+      );
       setIsAuthenticating(false);
     }
 

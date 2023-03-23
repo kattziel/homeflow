@@ -3,6 +3,9 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "./constants/Colors";
 
 import LoginScreen from "./screens/LoginScreen";
@@ -12,6 +15,45 @@ import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import IconButton from "./components/UI/IconButton";
 
 const Stack = createNativeStackNavigator();
+const BottomTab = createBottomTabNavigator();
+
+function BottomOverview() {
+  return (
+    <BottomTab.Navigator>
+      <BottomTab.Screen
+        name="FamilyScreen"
+        component={FamilyScreen}
+        options={{
+          title: "Family screen",
+          tabBarLabel: "Family",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={12} color="red" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="CalendarScreen"
+        component={CalendarScreen}
+        options={{}}
+      />
+      <BottomTab.Screen
+        name="TasksScreen"
+        component={TasksScreen}
+        options={{}}
+      />
+      <BottomTab.Screen
+        name="RewardsScreen"
+        component={RewardsScreen}
+        options={{}}
+      />
+      <BottomTab.Screen
+        name="GroceriesScreen"
+        component={GroceriesScreen}
+        options={{}}
+      />
+    </BottomTab.Navigator>
+  );
+}
 
 function AuthStack() {
   return (
@@ -38,9 +80,27 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{
-        headerRight: ({tintColor}) => <IconButton icon="exit" color={tintColor} size={24} onPress={authCtx.logout}/>
-      }} />
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="BottomOverview"
+        component={BottomOverview}
+        options={{
+          headerShown: true,
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -51,7 +111,7 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
-      {authCtx.isAuthenticated && <AuthenticatedStack/>}
+      {authCtx.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
   );
 }

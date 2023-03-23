@@ -39,8 +39,8 @@ function LoginScreen() {
         "Authentication failed!",
         "Could not log you in, please check your credentials or try again later."
         );
-        setIsAuthenticating(false);
-    }
+      }
+      setIsAuthenticating(false);
   }
   if (isAuthenticating) {
     return <LoadingOverlay message="Logging user in..." />;

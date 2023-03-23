@@ -49,6 +49,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     }
 
     onAuthenticate(email, password);
+    console.log(email, password, "- email and password from auth content")
   }
 
   return (

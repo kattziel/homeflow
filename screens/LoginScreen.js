@@ -8,15 +8,23 @@ import { authenticate } from "../util/auth";
 function LoginScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
-  async function loginHandler(email, password) {
-    setIsAuthenticating(true);
-    try {
-      const response = await authenticate({ email, password });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error, "error");
-    }
+  // async function loginHandler(email, password) {
+  //   console.log(email, password, "- email and password from login screen")
+  //   setIsAuthenticating(true);
+  //   try {
+  //     const response = await authenticate(email, password);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.log(error, "error");
+  //   }
 
+  //   setIsAuthenticating(false);
+  // }
+  async function loginHandler(email, password) {
+    console.log(email, password, 'email and password from login handler function')
+    setIsAuthenticating(true);
+    const response = await authenticate(email, password);
+    console.log(email, password, 'email and password from authenticate function')
     setIsAuthenticating(false);
   }
   if (isAuthenticating) {

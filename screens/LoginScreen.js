@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import AuthContent from "../components/Auth/AuthContent";
-import { authenticate } from "../util/auth";
+import { login } from "../util/auth";
 import { Alert } from "react-native";
 
 function LoginScreen() {
@@ -13,7 +13,7 @@ function LoginScreen() {
   //   console.log(email, password, "- email and password from login screen")
   //   setIsAuthenticating(true);
   //   try {
-  //     const response = await authenticate(email, password);
+  //     const response = await login(email, password);
   //     console.log(response.data);
   //   } catch (error) {
   //     console.log(error, "error");
@@ -25,8 +25,8 @@ function LoginScreen() {
     console.log(email, password, 'email and password from login handler function')
     setIsAuthenticating(true);
     try {
-      await authenticate(email, password);
-      console.log(email, password, 'email and password from authenticate function');
+      await login(email, password);
+      console.log(email, password, 'email and password from login function');
     } catch (error) {
       Alert.alert("Authentication failed!", "Could not log you in, please check your credentials or try again later.");
     }

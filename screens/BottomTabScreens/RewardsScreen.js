@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 
-function RewardsScreen() {
+function ChatScreen() {
   return (
     <View>
-      <Text style={styles.text}>RewardsScreen</Text>
+      <Text style={styles.text}>ChatScreen</Text>
     </View>
   );
 }
 
-export default RewardsScreen;
+export default ChatScreen;
 
 const styles = StyleSheet.create({
   text: {

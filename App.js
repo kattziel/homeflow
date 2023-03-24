@@ -21,6 +21,8 @@ import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
 import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
+import CreateProfileScreen from "./screens/CreateProfileScreen";
+import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -118,6 +120,8 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator>
+      <Stack.Screen name="CreateProfileScreen" component={CreateProfileScreen} />
+      <Stack.Screen name="AddFamilyMembersScreen" component={AddFamilyMembersScreen} />
       <Stack.Screen
         name="BottomOverview"
         component={BottomOverview}

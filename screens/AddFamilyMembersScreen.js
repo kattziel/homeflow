@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import Button from "../components/UI/Button";
 
 function AddFamilyMembersScreen() {
@@ -15,7 +15,7 @@ function AddFamilyMembersScreen() {
         <Text>Partner</Text>
       </View>
       <View style={styles.addButtonContainer}>
-        <Pressable style={styles.addButton}>Add button</Pressable>
+        <Pressable style={styles.addButton}><Text>Add button</Text></Pressable>
       </View>
     </View>
   );

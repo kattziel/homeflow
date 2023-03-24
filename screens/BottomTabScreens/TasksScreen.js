@@ -10,7 +10,7 @@ function TasksScreen() {
 
 export default TasksScreen;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     color: "blue",
     fontSize: 25,

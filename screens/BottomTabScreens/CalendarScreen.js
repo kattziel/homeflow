@@ -10,7 +10,7 @@ function CalendarScreen() {
 
 export default CalendarScreen;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     color: "blue",
     fontSize: 25,

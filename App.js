@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -14,43 +15,24 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import IconButton from "./components/UI/IconButton";
 
+import CalendarScreen from "./screens/BottomTabScreens/CalendarScreen";
+import FamilyScreen from "./screens/BottomTabScreens/FamilyScreen";
+import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
+import RewardsScreen from "./screens/BottomTabScreens/RewardsScreen";
+import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
+
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 function BottomOverview() {
   return (
     <BottomTab.Navigator>
-      <BottomTab.Screen
-        name="FamilyScreen"
-        component={FamilyScreen}
-        options={{
-          title: "Family screen",
-          tabBarLabel: "Family",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="hourglass" size={12} color="red" />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="CalendarScreen"
-        component={CalendarScreen}
-        options={{}}
-      />
-      <BottomTab.Screen
-        name="TasksScreen"
-        component={TasksScreen}
-        options={{}}
-      />
-      <BottomTab.Screen
-        name="RewardsScreen"
-        component={RewardsScreen}
-        options={{}}
-      />
-      <BottomTab.Screen
-        name="GroceriesScreen"
-        component={GroceriesScreen}
-        options={{}}
-      />
+      <BottomTab.Screen name="FamilyScreen" component={FamilyScreen} />
+      <BottomTab.Screen name="CalendarScreen" component={CalendarScreen} />
+      <BottomTab.Screen name="TasksScreen" component={TasksScreen} />
+      <BottomTab.Screen name="RewardsScreen" component={RewardsScreen} />
+      <BottomTab.Screen name="GroceriesScreen" component={GroceriesScreen} />
+      {/* chat screen? */}
     </BottomTab.Navigator>
   );
 }
@@ -73,35 +55,23 @@ function AuthStack() {
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.lightViolet },
-        headerTintColor: "blue",
-        contentStyle: { backgroundColor: Colors.lightViolet },
-      }}
-    >
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="BottomOverview"
-        component={BottomOverview}
-        options={{
-          headerShown: true,
-        }}
-      />
-    </Stack.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="BottomOverview" component={BottomOverview} />
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{
+            headerRight: ({ tintColor }) => (
+              <IconButton
+                icon="exit"
+                color={tintColor}
+                size={24}
+                onPress={authCtx.logout}
+              />
+            ),
+          }}
+        />
+      </Stack.Navigator>
   );
 }
 

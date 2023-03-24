@@ -10,7 +10,7 @@ function GroceriesScreen() {
 
 export default GroceriesScreen;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     color: "blue",
     fontSize: 25,

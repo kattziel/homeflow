@@ -10,7 +10,7 @@ function RewardsScreen() {
 
 export default RewardsScreen;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     color: "blue",
     fontSize: 25,

@@ -1,10 +1,10 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useState } from "react";
 
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
-import { Colors } from "../../constants/Colors";
+import {Colors} from '../../constants/Colors';
 
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
   // here I am receiving credentialsIsInvalid, so an object with mail, password, confirm mail and confirm password from authcontent.js; I am destructuring the object and assigning to each value new name, eg. emailIsInvalid etc.;
@@ -21,10 +21,17 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
+  const [onEnterValue, setOnEnterValue] = useState(false);
+
+  function endInputEditingHandler() {
+    setOnEnterValue(false);
+  }
+
   function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
       case "email":
         setEnteredEmail(enteredValue);
+        setOnEnterValue(true);
         break;
       case "confirmEmail":
         setEnteredConfirmEmail(enteredValue);
@@ -56,7 +63,14 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           keyboardType="email-address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}
           isInvalid={emailIsInvalid}
+          onEndEditing={endInputEditingHandler}
         />
+
+        {onEnterValue && (
+        <View style={styles.tooltipContainer}>
+          <Text style={styles.tooltipText}>Please, enter family email that will be used by all your family members</Text>
+        </View>
+        )}
 
         {!isLogin && (
           <Input
@@ -106,4 +120,19 @@ const styles = StyleSheet.create({
   form: {
     marginTop: 10,
   },
+  tooltipContainer: {
+    backgroundColor: Colors.Yellow,
+    // height: 30,
+    padding: 10,
+    marginHorizontal: 30,
+    justifyContent: 'center',
+    alignItems: "center",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: Colors.Pink
+  },
+  tooltipText: {
+    color: Colors.Pink,
+    fontSize: 12
+  }
 });

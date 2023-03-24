@@ -8,6 +8,7 @@ function Input({
   onUpdateValue,
   secure,
   isInvalid,
+  onEndEditing
 }) {
   return (
     <View style={[styles.inputContainer, isInvalid && styles.labelInvalid]}>
@@ -18,6 +19,7 @@ function Input({
         secureTextEntry={secure}
         value={value}
         onChangeText={onUpdateValue}
+        onEndEditing={onEndEditing}
       />
     </View>
   );

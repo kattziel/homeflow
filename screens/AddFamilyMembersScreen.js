@@ -1,0 +1,33 @@
+import { View, Text, StyleSheet } from "react-native";
+import Button from "../components/UI/Button";
+
+function AddFamilyMembersScreen() {
+  return (
+    <View>
+      <View style={styles.textContainer}>
+        <Text style={styles.textHeader}>Add Family Members</Text>
+        <Text style={styles.text}>
+          This will allow everyone to stay connected and up to date.
+        </Text>
+      </View>
+      <View style={styles.familyMemberSummaryContainer}>
+        <Text>Katarzyna</Text>
+        <Text>Partner</Text>
+      </View>
+      <View style={styles.addButtonContainer}>
+        <Pressable style={styles.addButton}>Add button</Pressable>
+      </View>
+    </View>
+  );
+}
+
+export default AddFamilyMembersScreen;
+
+const styles = StyleSheet.create({
+  textContainer: {},
+  textHeader: {},
+  text: {},
+  familyMemberSummaryContainer: {},
+  addButtonContainer: {},
+  addButton: {},
+});

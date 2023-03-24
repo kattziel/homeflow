@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: Colors.Pink,
+    opacity: 0.8
   },
   tooltipText: {
     color: Colors.Pink,

@@ -65,13 +65,15 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           keyboardType="email-address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}
           isInvalid={emailIsInvalid}
-          onPressIn={startInputEditingHandler}
-          onEndEditing={endInputEditingHandler}
+          onInputChange={startInputEditingHandler}
+          // onPressIn={startInputEditingHandler}
+          // onEndEditing={endInputEditingHandler}
         />
 
-        {onEnterValue && (
-          <Tooltip text="Please, enter an email that will be used by all your family members" />
-        )}
+        {onEnterValue &&
+          (isLogin ? null : (
+            <Tooltip text="Please, enter an email that will be used by all your family members" />
+          ))}
 
         {!isLogin && (
           <Input
@@ -90,13 +92,16 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
           secure
           isInvalid={passwordIsInvalid}
-          onPressIn={startInputEditingHandler}
-          onEndEditing={endInputEditingHandler}
+          // onPressIn={startInputEditingHandler}
+          // onEndEditing={endInputEditingHandler}
         />
 
-        {onEnterValue && (
-          <Tooltip text="Please, enter password that will be used by all your family members" />
-        )}
+        {onEnterValue &&
+          (isLogin ? (
+            <Tooltip text="Your whole family can use this password" />
+          ) : (
+            <Tooltip text="Please, enter password that will be used by all your family members" />
+          ))}
 
         {!isLogin && (
           <Input

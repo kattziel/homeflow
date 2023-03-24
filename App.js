@@ -20,6 +20,7 @@ import FamilyScreen from "./screens/BottomTabScreens/FamilyScreen";
 import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
 import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
+import StartupScreen from "./screens/StartupScreen";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -106,6 +107,7 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
+      <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>

@@ -1,21 +1,32 @@
 import { View, Text, StyleSheet } from "react-native";
+import { Colors } from '../../constants/Colors';
 
-function Tooltip({position, text}) {
-    return (
-        <View style={styles.tooltip(position.x, position.y)}>
-            <Text>{text}</Text>
-        </View>
-    );
+function Tooltip({text}) {
+  return (
+    <View style={styles.tooltipContainer}>
+      <Text style={styles.tooltipText}>{text}</Text>
+    </View>
+  );
 }
 
 export default Tooltip;
 
 const styles = StyleSheet.create({
-    tooltip: (x, y) => ({
-        position: "absolute",
-        left: x,
-        top: y
-    }),
+  tooltipContainer: {
+    backgroundColor: Colors.Yellow,
+    // height: 30,
+    padding: 10,
+    marginHorizontal: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: Colors.Pink,
+  },
+  tooltipText: {
+    color: Colors.Pink,
+    fontSize: 12,
+  },
 });
 
 // draft of tooltip

@@ -1,10 +1,9 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useState } from "react";
 
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-
-import {Colors} from '../../constants/Colors';
+import Tooltip from "../UI/Tooltip";
 
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
   // here I am receiving credentialsIsInvalid, so an object with mail, password, confirm mail and confirm password from authcontent.js; I am destructuring the object and assigning to each value new name, eg. emailIsInvalid etc.;
@@ -67,9 +66,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
         />
 
         {onEnterValue && (
-        <View style={styles.tooltipContainer}>
-          <Text style={styles.tooltipText}>Please, enter family email that will be used by all your family members</Text>
-        </View>
+          <Tooltip text="Please, enter an email that will be used by all your family members" />
         )}
 
         {!isLogin && (
@@ -90,6 +87,10 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           secure
           isInvalid={passwordIsInvalid}
         />
+
+        {onEnterValue && (
+          <Tooltip text="Please, enter password that will be used by all your family members" />
+        )}
 
         {!isLogin && (
           <Input
@@ -120,19 +121,4 @@ const styles = StyleSheet.create({
   form: {
     marginTop: 10,
   },
-  tooltipContainer: {
-    backgroundColor: Colors.Yellow,
-    // height: 30,
-    padding: 10,
-    marginHorizontal: 30,
-    justifyContent: 'center',
-    alignItems: "center",
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: Colors.Pink
-  },
-  tooltipText: {
-    color: Colors.Pink,
-    fontSize: 12
-  }
 });

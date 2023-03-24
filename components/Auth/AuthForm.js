@@ -22,6 +22,9 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
 
   const [onEnterValue, setOnEnterValue] = useState(false);
 
+  function startInputEditingHandler() {
+    setOnEnterValue(true);
+  }
   function endInputEditingHandler() {
     setOnEnterValue(false);
   }
@@ -62,6 +65,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           keyboardType="email-address"
           onUpdateValue={updateInputValueHandler.bind(this, "email")}
           isInvalid={emailIsInvalid}
+          onPressIn={startInputEditingHandler}
           onEndEditing={endInputEditingHandler}
         />
 
@@ -86,6 +90,8 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
           secure
           isInvalid={passwordIsInvalid}
+          onPressIn={startInputEditingHandler}
+          onEndEditing={endInputEditingHandler}
         />
 
         {onEnterValue && (

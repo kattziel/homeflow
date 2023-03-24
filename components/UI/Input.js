@@ -8,6 +8,7 @@ function Input({
   onUpdateValue,
   secure,
   isInvalid,
+  onPressIn,
   onEndEditing
 }) {
   return (
@@ -19,6 +20,7 @@ function Input({
         secureTextEntry={secure}
         value={value}
         onChangeText={onUpdateValue}
+        onPressIn={onPressIn}
         onEndEditing={onEndEditing}
       />
     </View>

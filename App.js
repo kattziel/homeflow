@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AppLoading from "expo-app-loading";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -120,8 +122,14 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator>
-      <Stack.Screen name="CreateProfileScreen" component={CreateProfileScreen} />
-      <Stack.Screen name="AddFamilyMembersScreen" component={AddFamilyMembersScreen} />
+      <Stack.Screen
+        name="AddFamilyMembersScreen"
+        component={AddFamilyMembersScreen}
+      />
+      <Stack.Screen
+        name="CreateProfileScreen"
+        component={CreateProfileScreen}
+      />
       <Stack.Screen
         name="BottomOverview"
         component={BottomOverview}
@@ -156,12 +164,32 @@ function Navigation() {
   );
 }
 
+function Root() {
+  const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    async function fetchToken() {
+      const storedToken = await AsyncStorage.getItem("token");
+
+      if (storedToken) {
+        authCtx.authenticate(storedToken);
+      }
+      setIsTryingLogin(false);
+    }
+    fetchToken();
+  }, []);
+  if (isTryingLogin) {
+    return <AppLoading />;
+  }
+  return <Navigation />;
+}
+
 export default function App() {
   return (
     <>
       <StatusBar style="dark" />
       <AuthContextProvider>
-        <Navigation />
+        <Root />
       </AuthContextProvider>
     </>
   );

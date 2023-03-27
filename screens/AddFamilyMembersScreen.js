@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 
 import AddButton from "../components/UI/AddButton";
 
 import FamilyMember from "../components/Family/FamilyMember";
 import Button from "../components/UI/Button";
+import { useNavigation } from "@react-navigation/native";
 
 function AddFamilyMembersScreen() {
+
+  const navigation = useNavigation();
+
+  function editFamilyMemberProfile() {
+    navigation.navigate("EditFamilyMember");
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.textContainer}>
@@ -15,7 +23,9 @@ function AddFamilyMembersScreen() {
         </Text>
       </View>
       <View style={styles.familyMemberSummaryContainer}>
-        <FamilyMember />
+        <Pressable onPress={editFamilyMemberProfile}>
+          <FamilyMember />
+        </Pressable>
       </View>
       <View style={styles.addButtonContainer}>
         <AddButton />
@@ -40,12 +50,12 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontSize: 25,
-    marginBottom: 15
+    marginBottom: 15,
   },
   text: {
     fontSize: 18,
     textAlign: "center",
-    marginBottom: 10
+    marginBottom: 10,
   },
   familyMemberSummaryContainer: {},
   addButtonContainer: {
@@ -55,6 +65,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around"
-  }
+    justifyContent: "space-around",
+  },
 });

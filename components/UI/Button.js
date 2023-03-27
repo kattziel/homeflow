@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   buttonText: {
-    fontSize: 22
+    fontSize: 22,
+    color: "black"
   }
   // buttonContainer: {
   //   alignItems: "center",

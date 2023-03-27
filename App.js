@@ -25,6 +25,9 @@ import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
 import CreateProfileScreen from "./screens/CreateProfileScreen";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
+import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
+
+import Wrapper from "./components/Wrapper";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -129,6 +132,10 @@ function AuthenticatedStack() {
       <Stack.Screen
         name="CreateProfileScreen"
         component={CreateProfileScreen}
+      />
+      <Stack.Screen
+        name="EditFamilyMemberProfile"
+        component={EditFamilyMemberProfile}
       />
       <Stack.Screen
         name="BottomOverview"

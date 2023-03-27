@@ -11,7 +11,7 @@ function AddFamilyMembersScreen() {
   const navigation = useNavigation();
 
   function editFamilyMemberProfile() {
-    navigation.navigate("EditFamilyMember");
+    navigation.navigate("EditFamilyMemberProfile");
   }
 
   return (

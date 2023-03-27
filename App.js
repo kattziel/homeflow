@@ -26,6 +26,7 @@ import StartupScreen from "./screens/StartupScreen";
 import CreateProfileScreen from "./screens/CreateProfileScreen";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
+import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
 
 import Wrapper from "./components/Wrapper";
 
@@ -136,6 +137,10 @@ function AuthenticatedStack() {
       <Stack.Screen
         name="EditFamilyMemberProfile"
         component={EditFamilyMemberProfile}
+      />
+      <Stack.Screen
+        name="AddFamilyMemberScreen"
+        component={AddFamilyMemberScreen}
       />
       <Stack.Screen
         name="BottomOverview"

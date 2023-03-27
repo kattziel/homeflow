@@ -1,14 +1,19 @@
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 
+import FamilyMember from "../components/Family/FamilyMember";
+import AddFamilyMemberScreen from './AddFamilyMemberScreen';
+import Button from "../components/UI/Button";
 import AddButton from "../components/UI/AddButton";
 
-import FamilyMember from "../components/Family/FamilyMember";
-import Button from "../components/UI/Button";
 import { useNavigation } from "@react-navigation/native";
 
 function AddFamilyMembersScreen() {
 
   const navigation = useNavigation();
+
+  function addFamilyMemberHandler() {
+    navigation.navigate("AddFamilyMemberScreen")
+  }
 
   function editFamilyMemberProfile() {
     navigation.navigate("EditFamilyMemberProfile");
@@ -28,7 +33,7 @@ function AddFamilyMembersScreen() {
         </Pressable>
       </View>
       <View style={styles.addButtonContainer}>
-        <AddButton />
+        <AddButton onPress={addFamilyMemberHandler}/>
       </View>
       <View style={styles.buttonsContainer}>
         <Button>Back</Button>

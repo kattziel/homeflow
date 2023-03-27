@@ -1,5 +1,8 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
+
 import Button from "../components/UI/Button";
+
+import FamilyMember from "../components/Family/FamilyMember";
 
 function AddFamilyMembersScreen() {
   return (
@@ -11,11 +14,12 @@ function AddFamilyMembersScreen() {
         </Text>
       </View>
       <View style={styles.familyMemberSummaryContainer}>
-        <Text>Katarzyna</Text>
-        <Text>Partner</Text>
+        <FamilyMember />
       </View>
       <View style={styles.addButtonContainer}>
-        <Pressable style={styles.addButton}><Text>Add button</Text></Pressable>
+        <Pressable style={styles.addButton}>
+          <Text>Add button</Text>
+        </Pressable>
       </View>
     </View>
   );

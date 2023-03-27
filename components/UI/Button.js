@@ -18,11 +18,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    alignItems: "center",
-    backgroundColor: Colors.Yellow,
-    borderRadius: 4,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginVertical: 15,
+    flex: 1,
+    borderColor: 'black',
+    borderWidth: 1,
+    margin: 10,
+    paddingHorizontal: 35,
+    paddingVertical: 10
+  },
+  buttonText: {
+    fontSize: 22
   }
+  // buttonContainer: {
+  //   alignItems: "center",
+  //   backgroundColor: Colors.Yellow,
+  //   borderRadius: 4,
+  //   paddingVertical: 10,
+  //   paddingHorizontal: 20,
+  //   marginVertical: 15,
+  // }
 });

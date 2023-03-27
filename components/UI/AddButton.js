@@ -11,7 +11,7 @@ function AddButton({ onPress }) {
       onPress={onPress}
     >
       <View style={styles.buttonContainer}>
-        <Ionicons name="add-circle-outline" size={45} color="black" />
+        <Ionicons name="add-circle-outline" size={45} color="gray" />
       </View>
     </Pressable>
   );

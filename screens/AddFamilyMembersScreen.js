@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   },
   familyMemberSummaryContainer: {},
   addButtonContainer: {
-    justifyContent: "center",
-    alignItems: "center"
+    // justifyContent: "center",
+    // alignItems: "center"
   },
   buttonsContainer: {
     flexDirection: "row",

@@ -2,19 +2,34 @@ import { View, Text, StyleSheet, Image } from "react-native";
 
 function FamilyMember() {
   return (
-    <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={require("../../assets/toad-mario.png")}
-        ></Image>
+    <>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/toad-mario.png")}
+          ></Image>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.name}>Katarzyna</Text>
+          <Text style={styles.position}>Partner</Text>
+          <Text style={styles.email}>Email</Text>
+        </View>
       </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.nameContainer}>Katarzyna</Text>
-        <Text style={styles.positionContainer}>Partner</Text>
-        <Text style={styles.emailContainer}>Email</Text>
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/toad-mario.png")}
+          ></Image>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.name}>Dawid</Text>
+          <Text style={styles.position}>Partner</Text>
+          <Text style={styles.email}>Email</Text>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -27,8 +42,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "blue",
-    marginVertical: 30,
-    marginHorizontal: 30,
+    marginVertical: 10,
+    // marginHorizontal: 30,
   },
   logoContainer: {
     margin: 10,
@@ -41,16 +56,19 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
   },
-  nameContainer: {
+  name: {
     fontSize: 20,
     marginBottom: 2,
+    color: "white",
   },
-  positionContainer: {
+  position: {
     fontSize: 15,
     marginBottom: 2,
+    color: "white",
   },
-  emailContainer: {
+  email: {
     fontSize: 12,
     marginBottom: 2,
+    color: "white",
   },
 });

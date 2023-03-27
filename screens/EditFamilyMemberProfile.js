@@ -1,15 +1,28 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import Button from "../components/UI/Button";
+import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { Ionicons } from "@expo/vector-icons";
 
 function EditFamilyMemberProfile() {
-  function cancelHandler() {}
-  function submitHandler() {}
+  const navigation = useNavigation();
+
+  const [usersName, setUsersName] = useState(usersName);
+  const [usersEmail, setUsersEmail] = useState(usersEmail);
+  const [usersBirthDate, setUsersBirthDate] = useState(usersBirthDate);
+  const [usersStatus, setUsersStatus] = useState(usersStatus);
+
+  function cancelHandler() {
+    navigation.navigate("AddFamilyMembersScreen");
+  }
+  function submitHandler() {
+    navigation.navigate("AddFamilyMembersScreen");
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>Add family member</Text>
+        <Text style={styles.header}>Edit family member</Text>
       </View>
       <View style={styles.inputsContainer}>
         <View style={styles.inputContainer}>
@@ -19,7 +32,7 @@ function EditFamilyMemberProfile() {
             size={12}
             color="black"
           />
-          <TextInput style={styles.input} placeholder="name" />
+          <TextInput style={styles.input} placeholder={usersName} />
         </View>
         <View style={styles.inputContainer}>
           <Ionicons
@@ -28,7 +41,7 @@ function EditFamilyMemberProfile() {
             size={12}
             color="black"
           />
-          <TextInput style={styles.input} placeholder="email" />
+          <TextInput style={styles.input} placeholder={usersEmail} />
         </View>
         <View style={styles.inputContainer}>
           <Ionicons
@@ -37,7 +50,7 @@ function EditFamilyMemberProfile() {
             size={12}
             color="black"
           />
-          <TextInput style={styles.input} placeholder="birthday" />
+          <TextInput style={styles.input} placeholder={usersBirthDate} />
         </View>
         <View style={styles.inputContainer}>
           <Ionicons
@@ -46,12 +59,20 @@ function EditFamilyMemberProfile() {
             size={12}
             color="black"
           />
-          <TextInput style={styles.input} placeholder="status" />
+          <TextInput style={styles.input} placeholder={usersStatus} />
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button onPress={cancelHandler}>Cancel</Button>
-        <Button onPress={submitHandler}>Save</Button>
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={cancelHandler}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </Pressable>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Pressable onPress={submitHandler}>
+            <Text style={styles.buttonText}>Save</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -83,14 +104,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     marginVertical: 10,
-    borderRadius: 4
+    borderRadius: 4,
   },
   buttonsContainer: {
-    // flexDirection: "row",
-    // alignItems: "center",
-    // justifyContent: "space-around",
-    // backgroundColor: "red",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    marginTop: 20,
   },
+  buttonContainer: {
+    borderColor: "black",
+    borderWidth: 1,
+    backgroundColor: "lightblue",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+  },
+  buttonText: { color: "white", fontSize: 20 },
   ionicons: {
     fontSize: 25,
     padding: 8,

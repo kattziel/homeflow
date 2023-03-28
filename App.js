@@ -127,55 +127,48 @@ function AuthStack() {
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
-    <>
-      <LinearGradient colors={gradientColors} style={styles.container}>
-        <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          overlayStyle: {
-            backgroundColor: <LinearGradient colors={gradientColors}/>
-          }
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="StartupScreen" component={StartupScreen} />
+      <Stack.Screen
+        name="AddFamilyMembersScreen"
+        component={AddFamilyMembersScreen}
+      />
+      <Stack.Screen
+        name="CreateProfileScreen"
+        component={CreateProfileScreen}
+      />
+      <Stack.Screen
+        name="EditFamilyMemberProfile"
+        component={EditFamilyMemberProfile}
+      />
+      <Stack.Screen
+        name="AddFamilyMemberScreen"
+        component={AddFamilyMemberScreen}
+      />
+      <Stack.Screen
+        name="BottomOverview"
+        component={BottomOverview}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
+          ),
         }}
-        >
-          <Stack.Screen name="StartupScreen" component={StartupScreen} />
-          <Stack.Screen
-            name="AddFamilyMembersScreen"
-            component={AddFamilyMembersScreen}
-          />
-          <Stack.Screen
-            name="CreateProfileScreen"
-            component={CreateProfileScreen}
-          />
-          <Stack.Screen
-            name="EditFamilyMemberProfile"
-            component={EditFamilyMemberProfile}
-          />
-          <Stack.Screen
-            name="AddFamilyMemberScreen"
-            component={AddFamilyMemberScreen}
-          />
-          <Stack.Screen
-            name="BottomOverview"
-            component={BottomOverview}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Welcome"
-            component={WelcomeScreen}
-            options={{
-              headerRight: ({ tintColor }) => (
-                <IconButton
-                  icon="exit"
-                  color={tintColor}
-                  size={24}
-                  onPress={authCtx.logout}
-                />
-              ),
-            }}
-          />
-        </Stack.Navigator>
-      </LinearGradient>
-    </>
+      />
+    </Stack.Navigator>
   );
 }
 

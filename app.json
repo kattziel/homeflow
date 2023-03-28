@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/makemegrow_splashscreen.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "white"
     },
     "assetBundlePatterns": [
       "**/*"

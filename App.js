@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "./constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
@@ -32,6 +33,8 @@ import Wrapper from "./components/Wrapper";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
+
+const gradientColors = ["#E0EAFC", "#FFFFFF"];
 
 function BottomOverview() {
   return (
@@ -115,7 +118,6 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
@@ -125,54 +127,69 @@ function AuthStack() {
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="AddFamilyMembersScreen"
-        component={AddFamilyMembersScreen}
-      />
-      <Stack.Screen
-        name="CreateProfileScreen"
-        component={CreateProfileScreen}
-      />
-      <Stack.Screen
-        name="EditFamilyMemberProfile"
-        component={EditFamilyMemberProfile}
-      />
-      <Stack.Screen
-        name="AddFamilyMemberScreen"
-        component={AddFamilyMemberScreen}
-      />
-      <Stack.Screen
-        name="BottomOverview"
-        component={BottomOverview}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
+    <>
+      <LinearGradient colors={gradientColors} style={styles.container}>
+        <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          overlayStyle: {
+            backgroundColor: <LinearGradient colors={gradientColors}/>
+          }
         }}
-      />
-    </Stack.Navigator>
+        >
+          <Stack.Screen name="StartupScreen" component={StartupScreen} />
+          <Stack.Screen
+            name="AddFamilyMembersScreen"
+            component={AddFamilyMembersScreen}
+          />
+          <Stack.Screen
+            name="CreateProfileScreen"
+            component={CreateProfileScreen}
+          />
+          <Stack.Screen
+            name="EditFamilyMemberProfile"
+            component={EditFamilyMemberProfile}
+          />
+          <Stack.Screen
+            name="AddFamilyMemberScreen"
+            component={AddFamilyMemberScreen}
+          />
+          <Stack.Screen
+            name="BottomOverview"
+            component={BottomOverview}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Welcome"
+            component={WelcomeScreen}
+            options={{
+              headerRight: ({ tintColor }) => (
+                <IconButton
+                  icon="exit"
+                  color={tintColor}
+                  size={24}
+                  onPress={authCtx.logout}
+                />
+              ),
+            }}
+          />
+        </Stack.Navigator>
+      </LinearGradient>
+    </>
   );
 }
 
 function Navigation() {
   const authCtx = useContext(AuthContext);
+  const gradientColors = ["#E0EAFC", "#FFFFFF"];
 
   return (
+    // <LinearGradient colors={gradientColors} style={styles.container}>
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
+    // </LinearGradient>
   );
 }
 
@@ -197,12 +214,16 @@ function Root() {
 }
 
 export default function App() {
+  const gradientColors = ["#E0EAFC", "#FFFFFF"];
+
   return (
     <>
       <StatusBar style="dark" />
-      <AuthContextProvider>
-        <Root />
-      </AuthContextProvider>
+      <LinearGradient colors={gradientColors} style={styles.container}>
+        <AuthContextProvider>
+          <Root />
+        </AuthContextProvider>
+      </LinearGradient>
     </>
   );
 }
@@ -210,8 +231,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

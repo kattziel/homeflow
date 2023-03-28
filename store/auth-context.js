@@ -16,8 +16,8 @@ function AuthContextProvider({ children }) {
 
   function authenticate(token) {
     setAuthToken(token);
-    AsyncStorage.setItem("token", token);
-    // this will store item in storage
+    // AsyncStorage.setItem("token", token);
+  //   // this will store item in storage
   }
   // verifying whether we signed up / logged in successfully
 

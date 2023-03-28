@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 
 import FamilyMember from "../components/Family/FamilyMember";
-import AddFamilyMemberScreen from './AddFamilyMemberScreen';
 import Button from "../components/UI/Button";
 import AddButton from "../components/UI/AddButton";
 

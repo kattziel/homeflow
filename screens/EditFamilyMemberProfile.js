@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import { Ionicons } from "@expo/vector-icons";
+import IconButton from "../components/UI/IconButton";
 
 function EditFamilyMemberProfile() {
   const navigation = useNavigation();
@@ -26,38 +26,38 @@ function EditFamilyMemberProfile() {
       </View>
       <View style={styles.inputsContainer}>
         <View style={styles.inputContainer}>
-          <Ionicons
-            style={styles.ionicons}
-            name="people"
-            size={12}
+          <IconButton
+            icon="person"
             color="black"
+            size={25}
+            style={styles.ionicons}
           />
           <TextInput style={styles.input} placeholder={usersName} />
         </View>
         <View style={styles.inputContainer}>
-          <Ionicons
-            style={styles.ionicons}
-            name="mail"
-            size={12}
+          <IconButton
+            icon="mail"
             color="black"
+            size={25}
+            style={styles.ionicons}
           />
           <TextInput style={styles.input} placeholder={usersEmail} />
         </View>
         <View style={styles.inputContainer}>
-          <Ionicons
-            style={styles.ionicons}
-            name="calendar"
-            size={12}
+          <IconButton
+            icon="calendar"
             color="black"
+            size={25}
+            style={styles.ionicons}
           />
           <TextInput style={styles.input} placeholder={usersBirthDate} />
         </View>
         <View style={styles.inputContainer}>
-          <Ionicons
-            style={styles.ionicons}
-            name="people"
-            size={12}
+          <IconButton
+            icon="people"
             color="black"
+            size={25}
+            style={styles.ionicons}
           />
           <TextInput style={styles.input} placeholder={usersStatus} />
         </View>
@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
   },
   buttonText: { color: "white", fontSize: 20 },
   ionicons: {
-    fontSize: 25,
-    padding: 8,
+    fontSize: 25
   },
 });

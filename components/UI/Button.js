@@ -1,10 +1,10 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 
-function Button({ onPress, children, pressableStyle, pressedStyle, viewStyle, textStyle }) {
+function Button({ onPress, children}) {
   return (
-    <Pressable style={({pressed}) => [pressableStyle, pressed && pressedStyle]} onPress={onPress}>
-      <View style={viewStyle}>
-        <Text style={textStyle}>{children}</Text>
+    <Pressable style={({pressed}) => [styles.buttonContainer, pressed && styles.pressed]} onPress={onPress}>
+      <View style={styles.viewStyle}>
+        <Text style={styles.textStyle}>{children}</Text>
       </View>
     </Pressable>
   );
@@ -12,22 +12,24 @@ function Button({ onPress, children, pressableStyle, pressedStyle, viewStyle, te
 
 export default Button;
 
-// const styles = StyleSheet.create({
-//   pressableButton: {
-//     // alignItems: 'center',
-//   },
-//   buttonContainer: {
-//     flex: 1,
-//     borderColor: 'black',
-//     borderWidth: 1,
-//     margin: 10,
-//     paddingHorizontal: 35,
-//     paddingVertical: 10
-//   },
-//   buttonText: {
-//     fontSize: 300,
-//     color: "black"
-//   }
+const styles = StyleSheet.create({
+  pressableButton: {
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingVertical: 10,
+    width: "46%"
+   },
+  viewStyle: {
+    paddingVertical: 5,
+  },
+  textStyle: {
+    color: "gray",
+    textAlign: "center",
+    fontSize: 20
+  }
 //   // buttonContainer: {
 //   //   alignItems: "center",
 //   //   backgroundColor: Colors.Yellow,
@@ -35,5 +37,5 @@ export default Button;
 //   //   paddingVertical: 10,
 //   //   paddingHorizontal: 20,
 //   //   marginVertical: 15,
-//   // }
-// });
+  // }
+});

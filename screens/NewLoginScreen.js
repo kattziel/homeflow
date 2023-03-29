@@ -10,6 +10,10 @@ function NewLoginScreen() {
   function navigateToAdd() {
     navigation.navigate("AddFamilyMembersScreen");
   }
+
+  function navigateTo() {
+    navigation.navigate("CreateProfileScreen");
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -17,8 +21,8 @@ function NewLoginScreen() {
           <Text style={styles.text}>Your account</Text>
         </View>
         <View style={styles.inputsContainer}>
-          <Input placeholderText={"Email or username"} ioniconsName="mail"/>
-          <Input placeholderText={"Password"} ioniconsName="key-outline"/>
+          <Input placeholderText={"Email or username"} ioniconsName="mail" />
+          <Input placeholderText={"Password"} ioniconsName="key-outline" />
         </View>
         <View style={styles.buttonContainer}>
           <StartScreenButton color="#91bfdb" onPress={navigateToAdd}>
@@ -26,7 +30,9 @@ function NewLoginScreen() {
           </StartScreenButton>
         </View>
         <View style={styles.flatButtonsContainer}>
-          <FlatButton style={styles.flatButton}>Reset password</FlatButton>
+          <FlatButton style={styles.flatButton} onPress={navigateTo}>
+            Reset password
+          </FlatButton>
           <FlatButton style={styles.flatButton}>Create family</FlatButton>
         </View>
       </View>

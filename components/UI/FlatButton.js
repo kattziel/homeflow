@@ -13,6 +13,9 @@ function FlatButton({ onPress, children }) {
 export default FlatButton;
 
 const styles = StyleSheet.create({
+  button: {
+    paddingBottom: 10
+  },
   pressed: {
     opacity: 0.5
   }

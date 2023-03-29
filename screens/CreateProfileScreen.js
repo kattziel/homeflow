@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Input from "../components/UI/Input";
@@ -16,27 +16,56 @@ function CreateProfileScreen() {
   }
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <View>
-        <Text>Create your profile</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.text}>Create your profile</Text>
+        </View>
+        <View style={styles.inputsContainer}>
+          <Input placeholderText={"Name your family"} ioniconsName="home" />
+          <Input placeholderText={"Set family password"} ioniconsName="key" />
+          <Input placeholderText={"Confirm password"} ioniconsName="key" />
+        </View>
+        <View style={styles.undertitleContainer}>
+          <Text style={styles.undertitle}>
+            Your whole family can use this password
+          </Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button onPress={moveBackwardsHandler}>Back</Button>
+          <Button onPress={moveForwardHandler}>Next</Button>
+        </View>
       </View>
-      <View>
-        <Image></Image>
-      </View>
-      <View style={styles.inputsContainer}>
-        <Input></Input>
-        <Input></Input>
-        <Input></Input>
-        <Input></Input>
-      </View>
-      <View style={styles.buttonsContainer}>
-        <Button onPress={moveBackwardsHandler}></Button>
-        <Button onPress={moveForwardHandler}></Button>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 export default CreateProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 20,
+  },
+  titleContainer: {
+    paddingBottom: 30,
+  },
+  text: {
+    fontSize: 28,
+    textAlign: "center",
+  },
+  undertitleContainer: {
+    paddingHorizontal: 35,
+    paddingTop: 20,
+  },
+  undertitle: {
+    textAlign: "center",
+    fontSize: 16,
+    paddingBottom: 30
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
+});

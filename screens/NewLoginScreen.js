@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import FlatButton from "../components/UI/FlatButton";
 import StartScreenButton from "../components/UI/StartScreenButton";
 import Input from "../components/UI/Input";
 
 function NewLoginScreen() {
+  const navigation = useNavigation();
+  function navigateToAdd() {
+    navigation.navigate("AddFamilyMembersScreen");
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -12,11 +17,13 @@ function NewLoginScreen() {
           <Text style={styles.text}>Your account</Text>
         </View>
         <View style={styles.inputsContainer}>
-          <Input />
-          <Input />
+          <Input placeholderText={"Email or username"} ioniconsName="mail"/>
+          <Input placeholderText={"Password"} ioniconsName="key-outline"/>
         </View>
         <View style={styles.buttonContainer}>
-          <StartScreenButton color="#91bfdb">Log in</StartScreenButton>
+          <StartScreenButton color="#91bfdb" onPress={navigateToAdd}>
+            Log in
+          </StartScreenButton>
         </View>
         <View style={styles.flatButtonsContainer}>
           <FlatButton style={styles.flatButton}>Reset password</FlatButton>
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   titleContainer: {
-    paddingBottom: 20,
+    paddingBottom: 30,
   },
   text: {
     fontSize: 28,

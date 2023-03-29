@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Colors } from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 function Input({
   label,
@@ -8,13 +9,19 @@ function Input({
   onUpdateValue,
   secure,
   isInvalid,
-  onInputChange
-  // onPressIn,
-  // onEndEditing
+  onInputChange,
+  placeholderText,
+  ioniconsName
 }) {
   return (
     <View style={[styles.inputContainer, isInvalid && styles.labelInvalid]}>
-      <Text style={styles.labelText}>{label}</Text>
+      <View style={styles.imageContainerStyle}>
+        <Ionicons
+          name={ioniconsName}
+          size={25}
+          color="lightgray"
+        ></Ionicons>
+      </View>
       <TextInput
         style={[styles.input, isInvalid && styles.inputInvalid]}
         keyboardType={keyboardType}
@@ -22,8 +29,7 @@ function Input({
         value={value}
         onChangeText={onUpdateValue}
         onInputChange={onInputChange}
-        // onPressIn={onPressIn}
-        // onEndEditing={onEndEditing}
+        placeholder={placeholderText}
       />
     </View>
   );
@@ -35,16 +41,23 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginVertical: 8,
     marginHorizontal: 10,
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  imageContainer: {
   },
   input: {
-    backgroundColor: "white",
+    borderBottomWidth: 1,
+    borderBottomColor: "lightgray",
     borderRadius: 4,
-    height: 25,
+    height: 35,
     marginTop: 4,
     marginBottom: 4,
+    marginLeft: 10,
+    width: "100%",
+    fontSize: 17
   },
-  labelInvalid: {
-  },
+  labelInvalid: {},
   inputInvalid: {
     backgroundColor: Colors.Pink,
   },

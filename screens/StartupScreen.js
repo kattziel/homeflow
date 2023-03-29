@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Button from "../components/UI/Button";
+import StartScreenButton from "../components/UI/StartScreenButton";
 
 function StartupScreen() {
   const navigation = useNavigation();
@@ -21,24 +21,12 @@ function StartupScreen() {
         <Text style={styles.text}>to HomeFlow!</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button
-          onPress={loginButtonHandler}
-          pressableStyle={styles.buttonPressableStyle}
-          pressedStyle={styles.buttonPressedStyle}
-          viewStyle={styles.buttonViewStyle}
-          textStyle={styles.buttonTextStyle}
-        >
+        <StartScreenButton onPress={loginButtonHandler}>
           Log in
-        </Button>
-        <Button
-          onPress={createFamilyButtonHandler}
-          pressableStyle={styles.buttonPressableStyle}
-          pressedStyle={styles.buttonPressedStyle}
-          viewStyle={styles.buttonViewStyle}
-          textStyle={styles.buttonTextStyle}
-        >
+        </StartScreenButton>
+        <StartScreenButton onPress={createFamilyButtonHandler}>
           Create a family
-        </Button>
+        </StartScreenButton>
       </View>
     </View>
   );
@@ -48,6 +36,7 @@ export default StartupScreen;
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 40,
     backgroundColor: "white",
     flex: 1,
     paddingHorizontal: 20,
@@ -56,9 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textContainer: {
-    marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
+    flex: 3
   },
   header: {
     fontSize: 30,
@@ -68,17 +57,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "#615E58",
   },
-  buttonPressableStyle: {},
-  buttonPressedStyle: {},
-  buttonViewStyle: {
-    borderColor: "black",
-    borderWidth: 1,
-    margin: 10,
-    paddingHorizontal: 35,
-    paddingVertical: 10,
-  },
-  buttonTextStyle: {
-    fontSize: 10,
-    color: "black",
-  },
+  buttonsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: "center",
+  }
 });

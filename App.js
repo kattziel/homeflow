@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 
@@ -12,10 +12,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "./constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 
+import AuthContextProvider, { AuthContext } from "./store/auth-context";
+
 import LoginScreen from "./screens/LoginScreen";
+import NewLoginScreen from "./screens/NewLoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
-import AuthContextProvider, { AuthContext } from "./store/auth-context";
+
 import IconButton from "./components/UI/IconButton";
 
 import CalendarScreen from "./screens/BottomTabScreens/CalendarScreen";
@@ -33,8 +36,6 @@ import Wrapper from "./components/Wrapper";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
-
-const gradientColors = ["#E0EAFC", "#FFFFFF"];
 
 function BottomOverview() {
   return (
@@ -118,7 +119,6 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
     </Stack.Navigator>
   );
@@ -128,10 +128,11 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
+    screenOptions={{
+      headerShown: false,
+    }}
     >
+    <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen
         name="AddFamilyMembersScreen"
@@ -174,15 +175,12 @@ function AuthenticatedStack() {
 
 function Navigation() {
   const authCtx = useContext(AuthContext);
-  const gradientColors = ["#E0EAFC", "#FFFFFF"];
 
   return (
-    // <LinearGradient colors={gradientColors} style={styles.container}>
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
-    // </LinearGradient>
   );
 }
 
@@ -212,11 +210,13 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
+      {/* <SafeAreaView> */}
       <LinearGradient colors={gradientColors} style={styles.container}>
         <AuthContextProvider>
           <Root />
         </AuthContextProvider>
       </LinearGradient>
+      {/* </SafeAreaView> */}
     </>
   );
 }

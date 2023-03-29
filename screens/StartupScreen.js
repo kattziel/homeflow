@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import StartScreenButton from "../components/UI/StartScreenButton";
+import Button from "../components/UI/Button";
 
 function StartupScreen() {
   const navigation = useNavigation();
@@ -21,11 +22,14 @@ function StartupScreen() {
         <Text style={styles.text}>to HomeFlow!</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <StartScreenButton onPress={loginButtonHandler}>
+        <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
           Log in
         </StartScreenButton>
-        <StartScreenButton onPress={createFamilyButtonHandler}>
-          Create a family
+        <StartScreenButton
+          onPress={createFamilyButtonHandler}
+          color="#d391b3"
+        >
+          Create family
         </StartScreenButton>
       </View>
     </View>
@@ -37,9 +41,8 @@ export default StartupScreen;
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 40,
-    backgroundColor: "white",
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginHorizontal: 20,
     // only to show the background color
     justifyContent: "center",
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 3
+    flex: 2
   },
   header: {
     fontSize: 30,
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
-  }
+  },
 });

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 
 function Button({ onPress, children, pressableStyle, pressedStyle, viewStyle, textStyle }) {
   return (

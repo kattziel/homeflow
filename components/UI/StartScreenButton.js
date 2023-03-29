@@ -1,13 +1,19 @@
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-function StartScreenButton({ onPress, children }) {
+function StartScreenButton({ onPress, children, color }) {
+  const borderColor = color;
+  const fontColor = color;
   return (
     <Pressable
-      style={({ pressed }) => [styles.buttonContainer, pressed && styles.pressed]}
+      style={({ pressed }) => [
+        styles.buttonContainer,
+        pressed && styles.pressed,
+        { borderColor },
+      ]}
       onPress={onPress}
     >
       <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}>{children}</Text>
+        <Text style={[styles.textStyle, { color: fontColor }]}>{children}</Text>
       </View>
     </Pressable>
   );
@@ -26,11 +32,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   pressed: {
-    opacity: 0.75
+    opacity: 0.75,
   },
   viewStyle: {},
   textStyle: {
     fontSize: 18,
-    color: "gray"
+    color: "red",
   },
 });

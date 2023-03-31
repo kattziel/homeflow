@@ -33,6 +33,7 @@ function AddFamilyMembersScreen() {
       </View>
       <View style={styles.addButtonContainer}>
         <AddButton onPress={addFamilyMemberHandler}/>
+        <Text style={styles.addFamilyMemberText}>Add member</Text>
       </View>
       <View style={styles.buttonsContainer}>
         <Button>Back</Button>
@@ -57,18 +58,23 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   text: {
-    fontSize: 18,
+    fontSize: 15,
     textAlign: "center",
     marginBottom: 10,
+    color: "gray"
   },
-  familyMemberSummaryContainer: {},
   addButtonContainer: {
-    // justifyContent: "center",
-    // alignItems: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 10
+  },
+  addFamilyMemberText: {
+    fontSize: 13,
+    color: "#B5B5B5"
   },
   buttonsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
 });

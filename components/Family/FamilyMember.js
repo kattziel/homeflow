@@ -41,17 +41,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "blue",
     marginVertical: 10,
-    // marginHorizontal: 30,
-  },
-  logoContainer: {
-    margin: 10,
-    backgroundColor: "red",
   },
   logo: {
     width: 100,
     height: 100,
+    resizeMode: "contain",
   },
   textContainer: {
     flex: 1,
@@ -59,16 +54,16 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     marginBottom: 2,
-    color: "white",
+    color: "#717171",
   },
   position: {
     fontSize: 15,
     marginBottom: 2,
-    color: "white",
+    color: "#717171",
   },
   email: {
     fontSize: 12,
     marginBottom: 2,
-    color: "white",
+    color: "#717171",
   },
 });

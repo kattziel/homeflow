@@ -61,16 +61,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     marginBottom: 10,
-    color: "gray"
+    color: "#A6A6A6"
   },
   addButtonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10
+    marginVertical: 20
   },
   addFamilyMemberText: {
     fontSize: 13,
-    color: "#B5B5B5"
+    color: "#B5B5B5",
+    marginVertical: 10
   },
   buttonsContainer: {
     flexDirection: "row",

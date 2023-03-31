@@ -21,7 +21,5 @@ export default AddButton;
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        // width: 10,
-        // height: 10
     }
 });

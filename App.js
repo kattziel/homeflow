@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, SafeAreaView} from "react-native";
+import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 
@@ -14,9 +14,10 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
-import LoginScreen from "./screens/LoginScreen";
+// import SignupScreen from "./screens/SignupScreen";
+// import LoginScreen from "./screens/LoginScreen";
+
 import NewLoginScreen from "./screens/NewLoginScreen";
-import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 
 import IconButton from "./components/UI/IconButton";
@@ -27,12 +28,13 @@ import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
 import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
-import CreateProfileScreen from "./screens/CreateProfileScreen";
+import CreateFamily from "./screens/CreateFamily";
+import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
 import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
 
-import Wrapper from "./components/Wrapper";
+// import Wrapper from "./components/Wrapper";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -119,7 +121,7 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="Signup" component={SignupScreen} />
+      {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
     </Stack.Navigator>
   );
 }
@@ -128,19 +130,17 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Stack.Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
+      screenOptions={{
+        headerShown: false,
+      }}
     >
-    <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
+      <Stack.Screen name="CreateProfile" component={CreateProfile} />
+      <Stack.Screen name="CreateFamily" component={CreateFamily} />
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
+      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       <Stack.Screen
         name="AddFamilyMembersScreen"
         component={AddFamilyMembersScreen}
-      />
-      <Stack.Screen
-        name="CreateProfileScreen"
-        component={CreateProfileScreen}
       />
       <Stack.Screen
         name="EditFamilyMemberProfile"
@@ -210,13 +210,11 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      {/* <SafeAreaView> */}
       <LinearGradient colors={gradientColors} style={styles.container}>
         <AuthContextProvider>
           <Root />
         </AuthContextProvider>
       </LinearGradient>
-      {/* </SafeAreaView> */}
     </>
   );
 }

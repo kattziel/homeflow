@@ -1,10 +1,10 @@
-import { Text, View, StyleSheet, Image, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
-function CreateProfileScreen() {
+function CreateFamily() {
   const navigation = useNavigation();
 
   function moveForwardHandler() {
@@ -19,7 +19,7 @@ function CreateProfileScreen() {
     <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.titleContainer}>
-          <Text style={styles.text}>Create your profile</Text>
+          <Text style={styles.text}>Create family</Text>
         </View>
         <View style={styles.inputsContainer}>
           <Input placeholderText={"Name your family"} ioniconsName="home" />
@@ -40,7 +40,7 @@ function CreateProfileScreen() {
   );
 }
 
-export default CreateProfileScreen;
+export default CreateFamily;
 
 const styles = StyleSheet.create({
   container: {
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
   undertitle: {
     textAlign: "center",
     fontSize: 16,
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-  }
+  },
 });

@@ -3,7 +3,8 @@ import { useNavigation } from "@react-navigation/native";
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
-import EmailReminder from "../components/UI/EmailReminder";
+// import EmailReminder from "../components/UI/EmailReminder";
+// import ResetPassword from "./ResetPassword";
 
 function CreateProfile() {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ function CreateProfile() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View style={styles.titleContainer}>
+        <View style={styles.headerContainer}>
           <Text style={styles.text}>Create your profile</Text>
         </View>
         <View style={styles.inputsContainer}>
@@ -33,7 +34,8 @@ function CreateProfile() {
           <Button onPress={moveForwardHandler}>Next</Button>
         </View>
         <View>
-          <EmailReminder email={"jekaterina.zielinska@gmail.com"} />
+          {/* <ResetPassword /> */}
+          {/* <EmailReminder email={"jekaterina.zielinska@gmail.com"} /> */}
         </View>
       </View>
     </SafeAreaView>
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: 20,
   },
-  titleContainer: {
+  headerContainer: {
     paddingBottom: 30,
   },
   text: {

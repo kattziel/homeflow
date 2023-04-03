@@ -1,5 +1,17 @@
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useState, useEffect } from "react";
+
+// import * as SplashScreen from "expo-splash-screen";
+
+// SplashScreen.preventAutoHideAsync();
+// keeping the splash screen visible while fetching resources
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
@@ -14,6 +26,8 @@ function CreateFamily() {
   function moveBackwardsHandler() {
     navigation.navigate("AddFamilyMembersScreen");
   }
+
+  const [appIsReady, setAppIsReady] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>

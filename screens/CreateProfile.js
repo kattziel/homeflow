@@ -5,6 +5,7 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 // import EmailReminder from "../components/UI/EmailReminder";
 // import ResetPassword from "./ResetPassword";
+import ErrorModal from "../components/UI/ErrorModal";
 
 function CreateProfile() {
   const navigation = useNavigation();
@@ -36,6 +37,7 @@ function CreateProfile() {
         <View>
           {/* <ResetPassword /> */}
           {/* <EmailReminder email={"jekaterina.zielinska@gmail.com"} /> */}
+          <ErrorModal />
         </View>
       </View>
     </SafeAreaView>

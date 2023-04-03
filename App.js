@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 
-import { NavigationContainer } from "@react-navigation/native";
+import * as native from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -177,10 +177,10 @@ function Navigation() {
   const authCtx = useContext(AuthContext);
 
   return (
-    <NavigationContainer>
+    <native.NavigationContainer>
       {!authCtx.isAuthenticated && <AuthStack />}
       {authCtx.isAuthenticated && <AuthenticatedStack />}
-    </NavigationContainer>
+    </native.NavigationContainer>
   );
 }
 

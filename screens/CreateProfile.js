@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
+import EmailReminder from "../components/UI/EmailReminder";
 
 function CreateProfile() {
   const navigation = useNavigation();
@@ -30,6 +31,9 @@ function CreateProfile() {
         <View style={styles.buttonsContainer}>
           <Button onPress={moveBackwardsHandler}>Back</Button>
           <Button onPress={moveForwardHandler}>Next</Button>
+        </View>
+        <View>
+          <EmailReminder email={"jekaterina.zielinska@gmail.com"} />
         </View>
       </View>
     </SafeAreaView>
@@ -63,6 +67,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 30
+    marginTop: 30,
   },
 });

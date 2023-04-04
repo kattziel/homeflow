@@ -18,6 +18,10 @@ function AddFamilyMembersScreen() {
     navigation.navigate("EditFamilyMemberProfile");
   }
 
+  function goBackHandler(){
+    navigation.goBack();
+  }
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.textContainer}>
@@ -36,7 +40,7 @@ function AddFamilyMembersScreen() {
         <Text style={styles.addFamilyMemberText}>Add member</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Button>Back</Button>
+        <Button onPress={goBackHandler}>Back</Button>
         <Button>Done</Button>
       </View>
     </ScrollView>

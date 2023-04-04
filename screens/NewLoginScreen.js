@@ -4,15 +4,21 @@ import { useNavigation } from "@react-navigation/native";
 import FlatButton from "../components/UI/FlatButton";
 import StartScreenButton from "../components/UI/StartScreenButton";
 import Input from "../components/UI/Input";
+import ResetPassword from "./ResetPassword";
 
 function NewLoginScreen() {
   const navigation = useNavigation();
-  function navigateToAdd() {
+
+  function loginHandler() {
+    navigation.replace("AddFamilyMembersScreen")
+  }
+
+  function createFamilyHandler() {
     navigation.navigate("AddFamilyMembersScreen");
   }
 
-  function navigateTo() {
-    navigation.navigate("CreateProfileScreen");
+  function resetPasswordHandler() {
+    navigation.navigate("ResetPassword");
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -25,15 +31,17 @@ function NewLoginScreen() {
           <Input placeholderText={"Password"} ioniconsName="key-outline" />
         </View>
         <View style={styles.buttonContainer}>
-          <StartScreenButton color="#91bfdb" onPress={navigateToAdd}>
+          <StartScreenButton color="#91bfdb" onPress={loginHandler}>
             Log in
           </StartScreenButton>
         </View>
         <View style={styles.flatButtonsContainer}>
-          <FlatButton style={styles.flatButton} onPress={navigateTo}>
+          <FlatButton style={styles.flatButton} onPress={resetPasswordHandler}>
             Reset password
           </FlatButton>
-          <FlatButton style={styles.flatButton}>Create family</FlatButton>
+          <FlatButton style={styles.flatButton} onPress={createFamilyHandler}>
+            Create family
+          </FlatButton>
         </View>
       </View>
     </SafeAreaView>

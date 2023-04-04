@@ -5,12 +5,12 @@ function StartScreenButton({ onPress, children, color }) {
   const fontColor = color;
   return (
     <Pressable
+    onPress={onPress}
       style={({ pressed }) => [
         styles.buttonContainer,
         pressed && styles.pressed,
         { borderColor },
       ]}
-      onPress={onPress}
     >
       <View style={styles.viewStyle}>
         <Text style={[styles.textStyle, { color: fontColor }]}>{children}</Text>

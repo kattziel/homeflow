@@ -37,6 +37,7 @@ import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
 import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
+import ResetPassword from "./screens/ResetPassword";
 
 // import Wrapper from "./components/Wrapper";
 
@@ -125,7 +126,6 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
     </Stack.Navigator>
   );
@@ -139,8 +139,11 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="CreateProfile" component={CreateProfile} />
+      <Stack.Screen name="StartupScreen" component={StartupScreen} />
+      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       <Stack.Screen name="CreateFamily" component={CreateFamily} />
+      <Stack.Screen name="CreateProfile" component={CreateProfile} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
@@ -155,7 +158,6 @@ function AuthenticatedStack() {
           ),
         }}
       />
-      <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen
         name="AddFamilyMembersScreen"
         component={AddFamilyMembersScreen}

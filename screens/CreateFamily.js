@@ -54,7 +54,7 @@ function CreateFamily() {
   const navigation = useNavigation();
 
   function moveForwardHandler() {
-    navigation.navigate("AddFamilyMembersScreen");
+    navigation.navigate("CreateProfile");
   }
 
   function moveBackwardsHandler() {

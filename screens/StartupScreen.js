@@ -8,11 +8,11 @@ function StartupScreen() {
   const navigation = useNavigation();
 
   function loginButtonHandler() {
-    navigation.navigate("Login");
+    navigation.navigate("NewLoginScreen");
   }
 
   function createFamilyButtonHandler() {
-    navigation.navigate("Signup");
+    navigation.replace("CreateFamily");
   }
 
   return (
@@ -25,10 +25,7 @@ function StartupScreen() {
         <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
           Log in
         </StartScreenButton>
-        <StartScreenButton
-          onPress={createFamilyButtonHandler}
-          color="#d391b3"
-        >
+        <StartScreenButton onPress={createFamilyButtonHandler} color="#d391b3">
           Create family
         </StartScreenButton>
       </View>
@@ -50,7 +47,7 @@ const styles = StyleSheet.create({
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 2
+    flex: 2,
   },
   header: {
     fontSize: 30,

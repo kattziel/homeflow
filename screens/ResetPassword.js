@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 
 function ResetPassword() {
-  function resetPassword() {}
+  const navigation = useNavigation();
+  function resetPassword() {
+    navigation.navigate("CreateFamily")
+  }
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -23,7 +27,11 @@ function ResetPassword() {
 export default ResetPassword;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 20
+  },
   headerContainer: {},
   header: {
     fontSize: 28,

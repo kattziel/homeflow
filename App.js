@@ -3,6 +3,10 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
+// import * as SplashScreen from 'expo-splash-screen';
+
+// SplashScreen.preventAutoHideAsync();
+// // keeping the splash screen visible while fetching resources
 
 import * as native from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -121,6 +125,8 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
+      <Stack.Screen name="CreateFamily" component={CreateFamily} />
+      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
     </Stack.Navigator>
   );
@@ -134,10 +140,22 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
+          ),
+        }}
+      />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
-      <Stack.Screen name="CreateFamily" component={CreateFamily} />
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
-      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       <Stack.Screen
         name="AddFamilyMembersScreen"
         component={AddFamilyMembersScreen}
@@ -154,20 +172,6 @@ function AuthenticatedStack() {
         name="BottomOverview"
         component={BottomOverview}
         options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
       />
     </Stack.Navigator>
   );

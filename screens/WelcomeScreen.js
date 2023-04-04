@@ -11,6 +11,7 @@ export default WelcomeScreen;
 
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 50,
     color: "red",
     fontSize: "100px",
     justifyContent: "center",

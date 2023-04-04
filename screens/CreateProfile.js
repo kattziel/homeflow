@@ -41,7 +41,7 @@ function CreateProfile() {
   }
 
   function moveBackwardsHandler() {
-    navigation.navigate("AddFamilyMembersScreen");
+    navigation.goBack();
   }
 
   return (

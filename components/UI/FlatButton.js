@@ -14,9 +14,12 @@ export default FlatButton;
 
 const styles = StyleSheet.create({
   button: {
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   pressed: {
     opacity: 0.5
+  },
+  text: {
+    textAlign: 'center'
   }
 });

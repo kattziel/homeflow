@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
+import FlatButton from "../components/UI/FlatButton";
 
 // import * as SplashScreen from "expo-splash-screen";
 
@@ -17,6 +18,8 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
 function CreateFamily() {
+  const navigation = useNavigation();
+
   const [enteredFamilyName, setEnteredFamilyName] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
@@ -51,14 +54,12 @@ function CreateFamily() {
     });
   }
 
-  const navigation = useNavigation();
+  function loginHandler() {
+    navigation.navigate("NewLoginScreen");
+  }
 
   function moveForwardHandler() {
     navigation.navigate("CreateProfile");
-  }
-
-  function moveBackwardsHandler() {
-    navigation.navigate("AddFamilyMembersScreen");
   }
 
   const [appIsReady, setAppIsReady] = useState(false);
@@ -100,8 +101,13 @@ function CreateFamily() {
             Your whole family can use this password
           </Text>
         </View>
+        <View style={styles.flatButtonContainer}>
+          <FlatButton style={styles.flatButton} onPress={loginHandler}>
+            Already have an account? Log in instead.
+          </FlatButton>
+        </View>
         <View style={styles.buttonsContainer}>
-          <Button onPress={moveBackwardsHandler}>Back</Button>
+          <Button disabled>Back</Button>
           <Button onPress={moveForwardHandler}>Next</Button>
         </View>
       </View>
@@ -138,4 +144,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  flatButtonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 50,
+    paddingVertical: 8
+  },
+  flatButton: {
+    textAlign: "center",
+  },
+  disabledButton: {
+    backgroundColor: "red",
+  }
 });

@@ -14,7 +14,7 @@ function NewLoginScreen() {
   }
 
   function createFamilyHandler() {
-    navigation.navigate("AddFamilyMembersScreen");
+    navigation.navigate("CreateFamily");
   }
 
   function resetPasswordHandler() {

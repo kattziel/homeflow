@@ -1,8 +1,16 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-function Button({ onPress, children}) {
+function Button({ onPress, children, disabled }) {
   return (
-    <Pressable style={({pressed}) => [styles.buttonContainer, pressed && styles.pressed]} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.buttonContainer,
+        pressed && styles.pressed,
+        disabled && styles.disabled,
+      ]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <View style={styles.viewStyle}>
         <Text style={styles.textStyle}>{children}</Text>
       </View>
@@ -14,28 +22,23 @@ export default Button;
 
 const styles = StyleSheet.create({
   pressableButton: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonContainer: {
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     paddingVertical: 10,
-    width: "46%"
-   },
+    width: "46%",
+  },
   viewStyle: {
     paddingVertical: 5,
   },
   textStyle: {
     color: "gray",
     textAlign: "center",
-    fontSize: 20
-  }
-//   // buttonContainer: {
-//   //   alignItems: "center",
-//   //   backgroundColor: Colors.Yellow,
-//   //   borderRadius: 4,
-//   //   paddingVertical: 10,
-//   //   paddingHorizontal: 20,
-//   //   marginVertical: 15,
-  // }
+    fontSize: 20,
+  },
+  disabled: {
+    opacity: 0.3,
+  },
 });

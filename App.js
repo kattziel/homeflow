@@ -125,7 +125,6 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
-      <Stack.Screen name="CreateFamily" component={CreateFamily} />
       <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
       {/* <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
     </Stack.Navigator>
@@ -140,6 +139,7 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="CreateFamily" component={CreateFamily} />
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}

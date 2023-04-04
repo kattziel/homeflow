@@ -17,6 +17,40 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
 function CreateFamily() {
+  const [enteredFamilyName, setEnteredFamilyName] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+
+  function updateInputValueHandler(inputType, enteredValue) {
+    switch (inputType) {
+      case "familyName":
+        setEnteredFamilyName(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "password":
+        setEnteredPassword(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "confirmPassword":
+        setEnteredConfirmPassword(enteredValue);
+        console.log(enteredValue);
+    }
+  }
+
+  // const {
+  //   familyName: familyNameIsInvalid,
+  //   password: passwordIsInvalid,
+  //   confirmPassword: confirmPasswordIsInvalid,
+  // } = credentialsInvalid;
+
+  function submitHandler() {
+    onsubmit({
+      familyName: enteredFamilyName,
+      password: enteredPassword,
+      confirmPassword: enteredConfirmPassword,
+    });
+  }
+
   const navigation = useNavigation();
 
   function moveForwardHandler() {
@@ -36,9 +70,30 @@ function CreateFamily() {
           <Text style={styles.text}>Create family</Text>
         </View>
         <View style={styles.inputsContainer}>
-          <Input placeholderText={"Name your family"} ioniconsName="home" />
-          <Input placeholderText={"Set family password"} ioniconsName="key" />
-          <Input placeholderText={"Confirm password"} ioniconsName="key" />
+          <Input
+            value={enteredFamilyName}
+            placeholderText={"Name your family"}
+            ioniconsName="home"
+            onUpdateValue={updateInputValueHandler.bind(this, "familyName")}
+            // inInvalid={familyNameIsInvalid}
+          />
+          <Input
+            value={enteredPassword}
+            placeholderText={"Set family password"}
+            ioniconsName="key"
+            onUpdateValue={updateInputValueHandler.bind(this, "password")}
+            // inInvalid={passwordIsInvalid}
+          />
+          <Input
+            value={enteredConfirmPassword}
+            placeholderText={"Confirm password"}
+            ioniconsName="key"
+            onUpdateValue={updateInputValueHandler.bind(
+              this,
+              "confirmPassword"
+            )}
+            // inInvalid={confirmPasswordIsInvalid}
+          />
         </View>
         <View style={styles.undertitleContainer}>
           <Text style={styles.undertitle}>
@@ -76,6 +131,7 @@ const styles = StyleSheet.create({
   undertitle: {
     textAlign: "center",
     fontSize: 16,
+    color: "lightgray",
     paddingBottom: 30,
   },
   buttonsContainer: {

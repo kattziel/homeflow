@@ -139,6 +139,7 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen name="CreateFamily" component={CreateFamily} />
       <Stack.Screen
         name="Welcome"
@@ -154,7 +155,6 @@ function AuthenticatedStack() {
           ),
         }}
       />
-      <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen
         name="AddFamilyMembersScreen"

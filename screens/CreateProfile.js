@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import { useState } from "react";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 // import EmailReminder from "../components/UI/EmailReminder";
@@ -8,6 +8,32 @@ import Button from "../components/UI/Button";
 import ErrorModal from "../components/UI/ErrorModal";
 
 function CreateProfile() {
+  const [enteredName, setEnteredName] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
+  const [enteredRole, setEnteredRole] = useState("");
+
+  function updateInputValueHandler(inputType, enteredValue) {
+    switch (inputType) {
+      case "name":
+        setEnteredName(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "email":
+        setEnteredEmail(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "age":
+        setEnteredAge(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "role":
+        setEnteredRole(enteredValue);
+        console.log(enteredValue);
+        break;
+    }
+  }
+
   const navigation = useNavigation();
 
   function moveForwardHandler() {
@@ -25,10 +51,32 @@ function CreateProfile() {
           <Text style={styles.text}>Create your profile</Text>
         </View>
         <View style={styles.inputsContainer}>
-          <Input placeholderText={"Name"} ioniconsName="person" />
-          <Input placeholderText={"Email"} ioniconsName="mail" />
-          <Input placeholderText={"Age"} ioniconsName="heart" />
-          <Input placeholderText={"Role (optional)"} ioniconsName="people" />
+          <Input
+            value={enteredName}
+            placeholderText={"Name"}
+            ioniconsName="person"
+            onUpdateValue={updateInputValueHandler.bind(this, "name")}
+          />
+          <Input
+            value={enteredEmail}
+            placeholderText={"Email"}
+            ioniconsName="mail"
+            onUpdateValue={updateInputValueHandler.bind(this, "email")}
+            keyboardType="email-address"
+          />
+          <Input
+            value={enteredAge}
+            placeholderText={"Age"}
+            ioniconsName="heart"
+            onUpdateValue={updateInputValueHandler.bind(this, "age")}
+            keyboardType="numeric"
+          />
+          <Input
+            value={enteredRole}
+            placeholderText={"Role (optional)"}
+            ioniconsName="people"
+            onUpdateValue={updateInputValueHandler.bind(this, "role")}
+          />
         </View>
         <View style={styles.buttonsContainer}>
           <Button onPress={moveBackwardsHandler}>Back</Button>

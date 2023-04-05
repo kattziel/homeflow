@@ -55,11 +55,11 @@ function CreateFamily() {
   }
 
   function loginHandler() {
-    navigation.navigate("NewLoginScreen");
+    navigation.replace("NewLoginScreen");
   }
 
   function moveForwardHandler() {
-    navigation.navigate("CreateProfile");
+    navigation.replace("CreateProfile");
   }
 
   const [appIsReady, setAppIsReady] = useState(false);

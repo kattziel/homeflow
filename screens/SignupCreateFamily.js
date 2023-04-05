@@ -1,13 +1,8 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  ActivityIndicator,
-} from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FlatButton from "../components/UI/FlatButton";
+import { createUser } from "../util/auth";
 
 // import * as SplashScreen from "expo-splash-screen";
 
@@ -18,18 +13,55 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
 function SignupCreateFamily() {
-  const navigation = useNavigation();
+  function validateHandler(credentials) {
+    let { email, confirmEmail, password, confirmPassword } = credentials;
+    email = email.trim();
+    password = password.trim();
 
-  const [enteredFamilyName, setEnteredFamilyName] = useState("");
+    const emailIsValid = email.includes("@");
+    const emailsAreEqual = email === confirmEmail;
+    const passwordIsValid = password.length >= 6;
+    const passwordsAreEqual = password === confirmPassword;
+
+    if (
+      !emailIsValid ||
+      !passwordIsValid ||
+      !emailsAreEqual ||
+      !passwordsAreEqual
+    ) {
+      Alert.alert(
+        "Invalid credentials!",
+        "Please check your entered credentials."
+      );
+      setCredentialsInvalid({
+        email: !emailIsValid,
+        confirmEmail: !emailIsValid || !emailsAreEqual,
+        password: !passwordIsValid,
+        confirmPassword: !passwordIsValid || !passwordsAreEqual,
+      });
+      return;
+    }
+    console.log(email, confirmEmail, password, confirmPasswor, " - Email, confirm email, password and confirmPassword from SignupScreen")
+  }
+
+  const navigation = useNavigation();
+  const [credentialsInvalid, setCredentialsInvalid] = useState(false);
+
+  // updating input values
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
   function updateInputValueHandler(inputType, enteredValue) {
     switch (inputType) {
-      case "familyName":
-        setEnteredFamilyName(enteredValue);
+      case "email":
+        setEnteredEmail(enteredValue);
         console.log(enteredValue);
         break;
+      case "confirmEmail":
+        setEnteredConfirmEmail(enteredValue);
+        console.log(enteredValue);
       case "password":
         setEnteredPassword(enteredValue);
         console.log(enteredValue);
@@ -48,7 +80,8 @@ function SignupCreateFamily() {
 
   function submitHandler() {
     onsubmit({
-      familyName: enteredFamilyName,
+      email: enteredEmail,
+      confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
     });
@@ -72,17 +105,17 @@ function SignupCreateFamily() {
         </View>
         <View style={styles.inputsContainer}>
           <Input
-            value={enteredFamilyName}
+            value={enteredEmail}
             placeholderText={"Email"}
             ioniconsName="mail"
-            onUpdateValue={updateInputValueHandler.bind(this, "mail")}
+            onUpdateValue={updateInputValueHandler.bind(this, "email")}
             // inInvalid={familyNameIsInvalid}
           />
           <Input
-            value={enteredFamilyName}
+            value={enteredConfirmEmail}
             placeholderText={"Confirm email"}
             ioniconsName="mail"
-            onUpdateValue={updateInputValueHandler.bind(this, "confirmMail")}
+            onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
             // inInvalid={familyNameIsInvalid}
           />
           <Input
@@ -118,7 +151,7 @@ function SignupCreateFamily() {
         </View>
         <View style={styles.buttonsContainer}>
           <Button disabled>Back</Button>
-          <Button onPress={moveForwardHandler}>Next</Button>
+          <Button onPress={submitHandler}>Next</Button>
         </View>
       </View>
     </SafeAreaView>
@@ -132,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 20,
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
   headerContainer: {
     paddingBottom: 30,
@@ -168,7 +201,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
   },
   flatButtonText: {
-    color: "gray"
+    color: "gray",
   },
   boldText: {
     fontWeight: "bold",

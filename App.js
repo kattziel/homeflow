@@ -32,7 +32,7 @@ import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
 import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
-import CreateFamily from "./screens/CreateFamily";
+import SignupCreateFamily from "./screens/SignupCreateFamily";
 import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
@@ -141,7 +141,7 @@ function AuthenticatedStack() {
     >
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
       <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
-      <Stack.Screen name="CreateFamily" component={CreateFamily} />
+      <Stack.Screen name="SignupCreateFamily" component={SignupCreateFamily} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen

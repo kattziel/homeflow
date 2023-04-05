@@ -12,7 +12,7 @@ function StartupScreen() {
   }
 
   function createFamilyButtonHandler() {
-    navigation.replace("CreateFamily");
+    navigation.replace("SignupCreateFamily");
   }
 
   return (

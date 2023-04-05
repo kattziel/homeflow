@@ -17,7 +17,7 @@ import FlatButton from "../components/UI/FlatButton";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 
-function CreateFamily() {
+function SignupCreateFamily() {
   const navigation = useNavigation();
 
   const [enteredFamilyName, setEnteredFamilyName] = useState("");
@@ -67,20 +67,27 @@ function CreateFamily() {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.text}>Create family</Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>Create family</Text>
         </View>
         <View style={styles.inputsContainer}>
           <Input
             value={enteredFamilyName}
-            placeholderText={"Name your family"}
-            ioniconsName="home"
-            onUpdateValue={updateInputValueHandler.bind(this, "familyName")}
+            placeholderText={"Email"}
+            ioniconsName="mail"
+            onUpdateValue={updateInputValueHandler.bind(this, "mail")}
+            // inInvalid={familyNameIsInvalid}
+          />
+          <Input
+            value={enteredFamilyName}
+            placeholderText={"Confirm email"}
+            ioniconsName="mail"
+            onUpdateValue={updateInputValueHandler.bind(this, "confirmMail")}
             // inInvalid={familyNameIsInvalid}
           />
           <Input
             value={enteredPassword}
-            placeholderText={"Set family password"}
+            placeholderText={"Set password"}
             ioniconsName="key"
             onUpdateValue={updateInputValueHandler.bind(this, "password")}
             // inInvalid={passwordIsInvalid}
@@ -96,14 +103,17 @@ function CreateFamily() {
             // inInvalid={confirmPasswordIsInvalid}
           />
         </View>
-        <View style={styles.undertitleContainer}>
+        {/* <View style={styles.undertitleContainer}>
           <Text style={styles.undertitle}>
             Your whole family can use this password
           </Text>
-        </View>
+        </View> */}
         <View style={styles.flatButtonContainer}>
           <FlatButton style={styles.flatButton} onPress={loginHandler}>
-            Already have an account? Log in instead.
+            <Text style={styles.flatButtonText}>
+              Already have an account?{" "}
+              <Text style={styles.boldText}>Log in instead.</Text>
+            </Text>
           </FlatButton>
         </View>
         <View style={styles.buttonsContainer}>
@@ -115,18 +125,19 @@ function CreateFamily() {
   );
 }
 
-export default CreateFamily;
+export default SignupCreateFamily;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 20,
+    justifyContent: "space-evenly"
   },
-  titleContainer: {
+  headerContainer: {
     paddingBottom: 30,
   },
-  text: {
+  header: {
     fontSize: 28,
     textAlign: "center",
   },
@@ -148,12 +159,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 50,
-    paddingVertical: 8
+    paddingVertical: 20,
   },
   flatButton: {
     textAlign: "center",
   },
   disabledButton: {
     backgroundColor: "red",
-  }
+  },
+  flatButtonText: {
+    color: "gray"
+  },
+  boldText: {
+    fontWeight: "bold",
+  },
 });

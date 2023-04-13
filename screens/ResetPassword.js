@@ -1,16 +1,29 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 
 function ResetPassword() {
+  const [isReset, setIsReset] = useState(false);
+  let resetModalContent = (
+    <View style={styles.resetModalContainer}>
+      <Text style={styles.resetModalText}>
+        An email will be sent to jekaterina.zielinska@gmail.com with
+        instructions on how to reset your password
+      </Text>
+    </View>
+  );
+
   const navigation = useNavigation();
+
   function backButtonHandler() {
     navigation.goBack();
   }
   function resetPasswordHandler() {
-    navigation.navigate("NewLoginScreen");
+    setIsReset(true);
+    // setIsReset(false);
   }
   return (
     <View style={styles.container}>
@@ -28,6 +41,7 @@ function ResetPassword() {
           <Button onPress={resetPasswordHandler}>Reset</Button>
         </View>
       </View>
+      {setIsReset ? resetModalContent : null}
     </View>
   );
 }
@@ -58,5 +72,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+  },
+  resetModalContainer: {
+    backgroundColor: "#91bfdb",
+    padding: 20,
+    position: "absolute"
+  },
+  resetModalText: {
+    color: "white"
   },
 });

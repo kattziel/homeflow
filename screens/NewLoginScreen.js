@@ -7,8 +7,6 @@ import Input from "../components/UI/Input";
 import StartScreenButton from "../components/UI/StartScreenButton";
 
 function NewLoginScreen() {
-  // const [isAuthenticating, setIsAuthenticating] = useState(false);
-
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 

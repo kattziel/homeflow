@@ -80,7 +80,7 @@ function SignupCreateFamily() {
   }
 
   function submitHandler() {
-    onsubmit({
+    onSubmit({
       email: enteredEmail,
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,

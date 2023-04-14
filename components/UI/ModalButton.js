@@ -1,7 +1,7 @@
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-function ModalButton() {
+function ModalButton(props) {
   const navigation = useNavigation();
   return (
     <Pressable
@@ -10,7 +10,7 @@ function ModalButton() {
         pressed && styles.pressed,
       ]}
       onPress={() => {
-        setIsReset(false);
+        props.setIsReset(false);
         navigation.navigate("NewLoginScreen");
       }}
     >

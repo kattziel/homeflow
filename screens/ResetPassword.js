@@ -26,17 +26,7 @@ function ResetPassword() {
           with instructions on how to reset your password
         </Text>
         <View style={styles.buttonContainer}>
-          <ModalButton />
-          {/*
-          <Button
-            onPress={() => {
-              setIsReset(false);
-              navigation.navigate("NewLoginScreen");
-            }}
-            style={styles.modalButton}
-          >
-            OK
-          </Button> */}
+          <ModalButton setIsReset={setIsReset} />
         </View>
       </View>
     </View>
@@ -66,7 +56,9 @@ function ResetPassword() {
           <Button onPress={resetPasswordHandler}>Reset</Button>
         </View>
       </View>
-      {setIsReset ? resetModalContent : null}
+      <View style={styles.modalContainer}>
+        {setIsReset ? resetModalContent : null}
+      </View>
     </View>
   );
 }
@@ -98,10 +90,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
+  modalContainer: {},
   resetModalContainer: {
     backgroundColor: "#91bfdb",
     padding: 20,
     position: "absolute",
+    marginHorizontal: 10,
   },
   resetModalText: {
     color: "white",

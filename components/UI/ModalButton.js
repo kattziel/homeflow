@@ -3,19 +3,28 @@ import { useNavigation } from "@react-navigation/native";
 
 function ModalButton(props) {
   const navigation = useNavigation();
+  function okResetHandler() {
+    props.setIsReset(false);
+    navigation.navigate("NewLoginScreen");
+  }
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.buttonContainer,
-        pressed && styles.pressed,
-      ]}
-      onPress={() => {
-        props.setIsReset(false);
-        navigation.navigate("NewLoginScreen");
-      }}
+      style={({ pressed }) =>
+        pressed
+          ? [styles.buttonContainer, styles.pressed]
+          : styles.buttonContainer
+      }
+      onPress={okResetHandler}
     >
       <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}>OK</Text>
+        <Text
+          style={({ pressed }) => [
+            styles.textStyle,
+            pressed && styles.pressedText,
+          ]}
+        >
+          OK
+        </Text>
       </View>
     </Pressable>
   );
@@ -25,8 +34,7 @@ export default ModalButton;
 
 const styles = StyleSheet.create({
   pressableButton: {},
-  buttonContainer: {
-  },
+  buttonContainer: {},
   viewStyle: {
     borderWidth: 1,
     borderColor: "gray",
@@ -39,6 +47,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   pressed: {
-    borderColor: "white"
-  }
+    backgroundColor: "lightgray",
+    opacity: 0.5,
+  },
+  //   pressedText: {
+  //     color: "white",
+  //   },
 });

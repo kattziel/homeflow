@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 import FlatButton from "../components/UI/FlatButton";
 import StartScreenButton from "../components/UI/StartScreenButton";
@@ -7,10 +8,26 @@ import Input from "../components/UI/Input";
 import ResetPassword from "./ResetPassword";
 
 function NewLoginScreen() {
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+
+  function updateInputValueHandler(inputType, enteredValue) {
+    switch (inputType) {
+      case "email":
+        setEnteredEmail(enteredValue);
+        console.log(enteredValue);
+        break;
+      case "password":
+        setEnteredPassword(enteredValue);
+        console.log(enteredValue);
+        break;
+    }
+  }
+
   const navigation = useNavigation();
 
   function loginHandler() {
-    navigation.replace("AddFamilyMembersScreen")
+    navigation.replace("AddFamilyMembersScreen");
   }
 
   function createFamilyHandler() {
@@ -27,8 +44,17 @@ function NewLoginScreen() {
           <Text style={styles.text}>Your account</Text>
         </View>
         <View style={styles.inputsContainer}>
-          <Input placeholderText={"Email or username"} ioniconsName="mail" />
-          <Input placeholderText={"Password"} ioniconsName="key-outline" />
+          <Input
+            onUpdateValue={updateInputValueHandler.bind(this, "email")}
+            placeholderText={"Email or username"}
+            ioniconsName="mail"
+          />
+          <Input
+            onUpdateValue={updateInputValueHandler.bind(this, "password")}
+            placeholderText={"Password"}
+            ioniconsName="key-outline"
+            secure
+          />
         </View>
         <View style={styles.buttonContainer}>
           <StartScreenButton color="#91bfdb" onPress={loginHandler}>

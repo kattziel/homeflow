@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-// import { BlurView } from '@react-native-community/blur';
+import { useState, useEffect } from "react";
 
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
@@ -12,11 +11,6 @@ function ResetPassword() {
 
   let resetModalContent = (
     <View style={styles.overlay}>
-      <View
-        style={StyleSheet.absoluteFillObject}
-        blurType="light"
-        blurAmount={10}
-      />
       <View style={styles.resetModalContainer}>
         <Text style={styles.resetModalText}>
           An email will be sent to{" "}
@@ -37,8 +31,25 @@ function ResetPassword() {
   function backButtonHandler() {
     navigation.goBack();
   }
+
   function resetPasswordHandler() {
     setIsReset(true);
+  }
+
+  // useEffect(() => {
+  //   if (isReset) {
+  //     setTimeout(() => {
+  //       setIsReset(false);
+  //       navigation.navigate("NewLoginScreen");
+  //     }, 2000);
+  //   }
+  // }, [isReset]);
+
+  const [enteredResetPassword, setEnteredResetPassword] = useState("");
+
+  function resetInputValueHandler(enteredText) {
+    setEnteredResetPassword(enteredText);
+    console.log(enteredResetPassword);
   }
   return (
     <View style={styles.container}>
@@ -46,7 +57,12 @@ function ResetPassword() {
         <Text style={styles.header}>Reset Password</Text>
       </View>
       <View style={styles.inputContainer}>
-        <Input placeholderText={"Email or username"} ioniconsName="mail" />
+        <Input
+          keyboardType="email-address"
+          placeholderText={"Email or username"}
+          ioniconsName="mail"
+          onChangeText={resetInputValueHandler}
+        />
       </View>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
@@ -57,7 +73,8 @@ function ResetPassword() {
         </View>
       </View>
       <View style={styles.modalContainer}>
-        {setIsReset ? resetModalContent : null}
+        {/* {setIsReset ? resetModalContent : null} */}
+        {/* {setIsReset ? null : resetModalContent} */}
       </View>
     </View>
   );
@@ -108,11 +125,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  // wrapper: {
-  //   ...StyleSheet.absoluteFillObject,
-  //   top: 10,
-  //   backgroundColor: "transparent",
-  // },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",

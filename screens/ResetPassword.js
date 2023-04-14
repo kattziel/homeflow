@@ -1,33 +1,43 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { BlurView } from "@react-native-community/blur";
+// import { BlurView } from '@react-native-community/blur';
 
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
+import ModalButton from "../components/UI/ModalButton";
 
 function ResetPassword() {
   const [isReset, setIsReset] = useState(false);
+
   let resetModalContent = (
     <View style={styles.overlay}>
-      <BlurView
+      <View
         style={StyleSheet.absoluteFillObject}
         blurType="light"
         blurAmount={10}
       />
       <View style={styles.resetModalContainer}>
         <Text style={styles.resetModalText}>
-          An email will be sent to jekaterina.zielinska@gmail.com with
-          instructions on how to reset your password
+          An email will be sent to{" "}
+          <Text style={styles.resetBoldModalText}>
+            jekaterina.zielinska@gmail.com
+          </Text>{" "}
+          with instructions on how to reset your password
         </Text>
-        <Button
-          onPress={() => {
-            setIsReset(false);
-            navigation.navigate("Login"); // assuming the screen name for the login screen is 'Login'
-          }}
-        >
-          OK
-        </Button>
+        <View style={styles.buttonContainer}>
+          <ModalButton />
+          {/*
+          <Button
+            onPress={() => {
+              setIsReset(false);
+              navigation.navigate("NewLoginScreen");
+            }}
+            style={styles.modalButton}
+          >
+            OK
+          </Button> */}
+        </View>
       </View>
     </View>
   );
@@ -41,7 +51,7 @@ function ResetPassword() {
     setIsReset(true);
   }
   return (
-    <View style={[styles.container, styles.wrapper]}>
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Reset Password</Text>
       </View>
@@ -95,12 +105,20 @@ const styles = StyleSheet.create({
   },
   resetModalText: {
     color: "white",
+    textAlign: "left",
   },
-  wrapper: {
-    ...StyleSheet.absoluteFillObject,
-    top: 10,
-    backgroundColor: "transparent",
+  resetBoldModalText: {
+    fontWeight: "bold",
   },
+  modalButtonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  // wrapper: {
+  //   ...StyleSheet.absoluteFillObject,
+  //   top: 10,
+  //   backgroundColor: "transparent",
+  // },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",

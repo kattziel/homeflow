@@ -1,6 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-function Button({ onPress, children, disabled }) {
+function Button({ onPress, children, disabled, backgroundColor }) {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width: "46%",
   },
   viewStyle: {
-    paddingVertical: 5,
+    paddingVertical: 5
   },
   textStyle: {
     color: "gray",

@@ -41,7 +41,13 @@ function SignupCreateFamily() {
       });
       return;
     }
-    console.log(email, confirmEmail, password, confirmPasswor, " - Email, confirm email, password and confirmPassword from SignupScreen")
+    console.log(
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      " - Email, confirm email, password and confirmPassword from SignupScreen"
+    );
   }
 
   const navigation = useNavigation();
@@ -61,22 +67,17 @@ function SignupCreateFamily() {
         break;
       case "confirmEmail":
         setEnteredConfirmEmail(enteredValue);
-        console.log(enteredValue);
+        console.log("value of entered confirm mail", enteredValue);
+        break;
       case "password":
         setEnteredPassword(enteredValue);
-        console.log(enteredValue);
+        console.log("value of entered password", enteredValue);
         break;
       case "confirmPassword":
         setEnteredConfirmPassword(enteredValue);
         console.log(enteredValue);
     }
   }
-
-  // const {
-  //   familyName: familyNameIsInvalid,
-  //   password: passwordIsInvalid,
-  //   confirmPassword: confirmPasswordIsInvalid,
-  // } = credentialsInvalid;
 
   function submitHandler() {
     onsubmit({
@@ -95,7 +96,7 @@ function SignupCreateFamily() {
     navigation.replace("CreateProfile");
   }
 
-  const [appIsReady, setAppIsReady] = useState(false);
+  // const [appIsReady, setAppIsReady] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -116,6 +117,7 @@ function SignupCreateFamily() {
             placeholderText={"Confirm email"}
             ioniconsName="mail"
             onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
+            // onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
             // inInvalid={familyNameIsInvalid}
           />
           <Input
@@ -123,6 +125,7 @@ function SignupCreateFamily() {
             placeholderText={"Set password"}
             ioniconsName="key"
             onUpdateValue={updateInputValueHandler.bind(this, "password")}
+            secure
             // inInvalid={passwordIsInvalid}
           />
           <Input
@@ -133,6 +136,7 @@ function SignupCreateFamily() {
               this,
               "confirmPassword"
             )}
+            secure
             // inInvalid={confirmPasswordIsInvalid}
           />
         </View>

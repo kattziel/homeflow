@@ -58,10 +58,11 @@ function ResetPassword() {
       </View>
       <View style={styles.inputContainer}>
         <Input
+          value={enteredResetPassword}
           keyboardType="email-address"
           placeholderText={"Email or username"}
           ioniconsName="mail"
-          onChangeText={resetInputValueHandler}
+          onUpdateValue={resetInputValueHandler}
         />
       </View>
       <View style={styles.buttonsContainer}>
@@ -73,7 +74,7 @@ function ResetPassword() {
         </View>
       </View>
       <View style={styles.modalContainer}>
-        {/* {setIsReset ? resetModalContent : null} */}
+        {setIsReset ? resetModalContent : null}
         {/* {setIsReset ? null : resetModalContent} */}
       </View>
     </View>

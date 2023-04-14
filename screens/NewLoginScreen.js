@@ -1,13 +1,14 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 
 import FlatButton from "../components/UI/FlatButton";
-import StartScreenButton from "../components/UI/StartScreenButton";
 import Input from "../components/UI/Input";
-import ResetPassword from "./ResetPassword";
+import StartScreenButton from "../components/UI/StartScreenButton";
 
 function NewLoginScreen() {
+  // const [isAuthenticating, setIsAuthenticating] = useState(false);
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
@@ -24,11 +25,29 @@ function NewLoginScreen() {
     }
   }
 
-  const navigation = useNavigation();
+  function submitHandler(credentials) {
+    let { enteredEmail, enteredPassword } = credentials;
+    const emailIsValid = enteredEmail.includes("@");
+    const passwordIsValid = enteredPassword.length > 6;
 
-  function loginHandler() {
+    if (!emailIsValid || !passwordIsValid) {
+      Alert.alert("Invalid input.", "Please check your entered credentials.");
+      setCredentialsInvalid({
+        email: true,
+        password: true,
+      });
+      return;
+    }
     navigation.replace("AddFamilyMembersScreen");
+    // otherwise, pass the valid credentials to the function that will be managing them; at this point I am redirecting to the Authenticated Screen, this is AddFamilyMemberScreen
   }
+
+  const [credentialsInvalid, setCredentialsInvalid] = useState({
+    email: false,
+    password: false,
+  });
+
+  const navigation = useNavigation();
 
   function createFamilyHandler() {
     navigation.navigate("SignupCreateFamily");
@@ -45,11 +64,13 @@ function NewLoginScreen() {
         </View>
         <View style={styles.inputsContainer}>
           <Input
+            value={enteredEmail}
             onUpdateValue={updateInputValueHandler.bind(this, "email")}
             placeholderText={"Email or username"}
             ioniconsName="mail"
           />
           <Input
+            value={enteredPassword}
             onUpdateValue={updateInputValueHandler.bind(this, "password")}
             placeholderText={"Password"}
             ioniconsName="key-outline"
@@ -57,7 +78,7 @@ function NewLoginScreen() {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <StartScreenButton color="#91bfdb" onPress={loginHandler}>
+          <StartScreenButton color="#91bfdb" onPress={submitHandler}>
             Log in
           </StartScreenButton>
         </View>

@@ -26,6 +26,7 @@ function NewLoginScreen() {
   function submitHandler(credentials) {
     let { enteredEmail, enteredPassword } = credentials;
     const emailIsValid = enteredEmail.includes("@");
+
     const passwordIsValid = enteredPassword.length > 6;
 
     if (!emailIsValid || !passwordIsValid) {

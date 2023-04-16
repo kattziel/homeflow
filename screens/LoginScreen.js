@@ -4,7 +4,7 @@ import { AuthContext } from "../store/auth-context";
 
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import AuthContent from "../components/Auth/AuthContent";
-import { login } from "../util/auth";
+import { loginUser } from "../util/auth";
 import { Alert } from "react-native";
 
 function LoginScreen() {
@@ -24,14 +24,9 @@ function LoginScreen() {
   //   setIsAuthenticating(false);
   // }
   async function loginHandler(email, password) {
-    console.log(
-      email,
-      password,
-      "email and password from login handler function"
-    );
     setIsAuthenticating(true);
     try {
-      const token = await login(email, password);
+      const token = await loginUser(email, password);
       authCtx.authenticate(token);
       console.log(email, password, "email and password from login function");
     } catch (error) {

@@ -4,20 +4,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
 function Input({
-  label,
   value,
   keyboardType,
   onUpdateValue,
   secure,
   isInvalid,
-  // this will be removed
   onInputChange,
   placeholderText,
   ioniconsName,
 }) {
-  const [inputIsValid, setInputIsValid] = useState(false);
-  const [inputIsTouched, setInputIsTouched] = useState(true);
 
+  const inputIsValid = !isInvalid;
   const imageColor = inputIsValid ? (color = "lightgray") : (color = "darkred");
 
   return (

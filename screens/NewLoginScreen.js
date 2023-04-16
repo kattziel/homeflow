@@ -1,60 +1,80 @@
 import { View, Text, StyleSheet, SafeAreaView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../store/auth-context";
+import { loginUser } from "../util/auth";
 
 import FlatButton from "../components/UI/FlatButton";
 import Input from "../components/UI/Input";
 import StartScreenButton from "../components/UI/StartScreenButton";
 
-function NewLoginScreen() {
+const NewLoginScreen = () => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const authCtx = useContext(AuthContext);
+  const navigation = useNavigation();
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
-  function updateInputValueHandler(inputType, enteredValue) {
-    switch (inputType) {
-      case "email":
-        setEnteredEmail(enteredValue);
-        console.log(enteredValue);
-        break;
-      case "password":
-        setEnteredPassword(enteredValue);
-        console.log(enteredValue);
-        break;
-    }
-  }
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
+  const [passwordIsInvalid, setPasswordIsInvalid] = useState(false);
 
-  function submitHandler(credentials) {
-    let { enteredEmail, enteredPassword } = credentials;
-    const emailIsValid = enteredEmail.includes("@");
+  useEffect(() => {
+    setEmailIsInvalid(false);
+  }, [enteredEmail]);
 
+  useEffect(() => {
+    setPasswordIsInvalid(false);
+  }, [enteredPassword]);
+
+  const submitHandler = () => {
+    const emailIsValid = enteredEmail.length > 0 && enteredEmail.includes("@");
     const passwordIsValid = enteredPassword.length > 6;
 
     if (!emailIsValid || !passwordIsValid) {
-      Alert.alert("Invalid input.", "Please check your entered credentials.");
-      setCredentialsInvalid({
-        email: true,
-        password: true,
-      });
-      return;
+      if (!emailIsValid && !passwordIsValid) {
+        setEmailIsInvalid(true);
+        setPasswordIsInvalid(true);
+        Alert.alert(
+          "Invalid inputs.",
+          "Please check your entered credentials."
+        );
+        return;
+      }
+
+      if (!emailIsValid) {
+        setEmailIsInvalid(true);
+        Alert.alert("Invalid input.", "Please check your entered email.");
+        return;
+      }
+
+      if (!passwordIsValid) {
+        setPasswordIsInvalid(true);
+        Alert.alert("Invalid input.", "Please check your entered password.");
+        return;
+      }
     }
-    navigation.replace("AddFamilyMembersScreen");
-    // otherwise, pass the valid credentials to the function that will be managing them; at this point I am redirecting to the Authenticated Screen, this is AddFamilyMemberScreen
-  }
+    loginHandler(enteredEmail, enteredPassword);
+  };
 
-  const [credentialsInvalid, setCredentialsInvalid] = useState({
-    email: false,
-    password: false,
-  });
+  const loginHandler = async (email, password) => {
+    setIsAuthenticating(true);
+    try {
+      const token = await loginUser(email, password);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        "Authentication failed!",
+        "Could not log you in, please check your credentials or try again later."
+      );
+    }
+    setIsAuthenticating(false);
+  };
 
-  const navigation = useNavigation();
+  const createFamilyHandler = () => navigation.navigate("SignupCreateFamily");
 
-  function createFamilyHandler() {
-    navigation.navigate("SignupCreateFamily");
-  }
+  const resetPasswordHandler = () => navigation.navigate("ResetPassword");
 
-  function resetPasswordHandler() {
-    navigation.navigate("ResetPassword");
-  }
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -64,20 +84,26 @@ function NewLoginScreen() {
         <View style={styles.inputsContainer}>
           <Input
             value={enteredEmail}
-            onUpdateValue={updateInputValueHandler.bind(this, "email")}
-            placeholderText={"Email or username"}
+            onUpdateValue={setEnteredEmail}
+            placeholderText={"Email"}
             ioniconsName="mail"
+            isInvalid={emailIsInvalid}
           />
           <Input
             value={enteredPassword}
-            onUpdateValue={updateInputValueHandler.bind(this, "password")}
+            onUpdateValue={setEnteredPassword}
             placeholderText={"Password"}
             ioniconsName="key-outline"
             secure
+            isInvalid={passwordIsInvalid}
           />
         </View>
         <View style={styles.buttonContainer}>
-          <StartScreenButton color="#91bfdb" onPress={submitHandler}>
+          <StartScreenButton
+            loading={isAuthenticating}
+            color="#91bfdb"
+            onPress={submitHandler}
+          >
             Log in
           </StartScreenButton>
         </View>
@@ -92,7 +118,7 @@ function NewLoginScreen() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default NewLoginScreen;
 

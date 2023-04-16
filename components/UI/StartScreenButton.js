@@ -1,11 +1,12 @@
+import { ActivityIndicator } from "react-native";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-function StartScreenButton({ onPress, children, color }) {
+function StartScreenButton({ onPress, children, color, loading = false }) {
   const borderColor = color;
   const fontColor = color;
   return (
     <Pressable
-    onPress={onPress}
+      onPress={onPress}
       style={({ pressed }) => [
         styles.buttonContainer,
         pressed && styles.pressed,
@@ -13,7 +14,13 @@ function StartScreenButton({ onPress, children, color }) {
       ]}
     >
       <View style={styles.viewStyle}>
-        <Text style={[styles.textStyle, { color: fontColor }]}>{children}</Text>
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <Text style={[styles.textStyle, { color: fontColor }]}>
+            {children}
+          </Text>
+        )}
       </View>
     </Pressable>
   );

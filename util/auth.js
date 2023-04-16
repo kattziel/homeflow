@@ -4,34 +4,26 @@ const API_KEY = "AIzaSyCBOOU19tedM_f6xOykfJDfgbQVUU0ZLYA";
 
 export async function createUser(email, password) {
   const response = await axios.post(
-    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]` +
-      API_KEY,
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=` + API_KEY,
     {
       email: email,
       password: password,
       returnSecureToken: true,
     }
   );
+  const token = response.data.idToken;
+  return token;
 }
 
-// async function authenticate(mode, email, password) {
-//   const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${API_KEY}`;
-
-//   const response = await axios.post(url, {
-//     email: email,
-//     password: password,
-//     returnSecureToken: true,
-//   });
-
-//   const token = response.data.idToken;
-
-//   return token;
-// }
-
-// export function createUser(email, password) {
-//   return authenticate("signUp", email, password);
-// }
-
-// export function login(email, password) {
-//   return authenticate("signInWithPassword", email, password);
-// }
+export async function loginUser(email, password) {
+  const response = await axios.post(
+    `https://identitytoolkit.googleapis.com/v1/accounts:login?key=` + API_KEY,
+    {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    }
+  );
+  const token = response.data.idToken;
+  return token;
+}

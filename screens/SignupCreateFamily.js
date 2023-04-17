@@ -45,18 +45,25 @@ const SignupCreateFamily = () => {
       !emailsAreEqual ||
       !passwordsAreEqual
     ) {
+      if (
+        (!emailIsValid || !emailsAreEqual) &&
+        !passwordIsValid ||
+        !passwordsAreEqual
+      ) {
+        setEmailIsInvalid(true);
+        setConfirmEmailIsInvalid(true);
+        setPasswordIsInvalid(true);
+        setConfirmPasswordIsInvalid(true);
+        Alert.alert(
+          "Invalid inputs.",
+          "Please check your entered credentials."
+        );
+        return;
+      }
       if (!emailIsValid || !emailsAreEqual) {
         setEmailIsInvalid(true);
         setConfirmEmailIsInvalid(true);
         Alert.alert("Invalid credentials!", "Please check entered email.");
-        return;
-      }
-
-      if (!passwordIsValid && !passwordsAreEqual) {
-        setPasswordIsInvalid(true);
-        setConfirmPasswordIsInvalid(true);
-        Alert.alert("Invalid input.", "Please check your entered password.");
-        return;
       }
     }
     createUser(enteredEmail, enteredPassword);
@@ -92,16 +99,16 @@ const SignupCreateFamily = () => {
             onUpdateValue={setEnteredPassword}
             placeholderText={"Set password"}
             ioniconsName="key"
-            secure
             isInvalid={passwordIsInvalid}
+            secure
           />
           <Input
             value={enteredConfirmPassword}
             onUpdateValue={setEnteredConfirmPassword}
             placeholderText={"Confirm password"}
             ioniconsName="key"
-            secure
             isInvalid={confirmPasswordIsInvalid}
+            secure
           />
         </View>
         <View style={styles.flatButtonContainer}>

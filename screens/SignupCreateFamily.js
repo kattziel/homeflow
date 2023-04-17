@@ -25,19 +25,13 @@ const SignupCreateFamily = () => {
 
   useEffect(() => {
     setEmailIsInvalid(false);
-  }, [enteredEmail]);
-
-  useEffect(() => {
     setConfirmEmailIsInvalid(false);
-  }, [enteredConfirmEmail]);
+  }, [enteredEmail, enteredConfirmEmail]);
 
   useEffect(() => {
     setPasswordIsInvalid(false);
-  }, [enteredPassword]);
-
-  useEffect(() => {
     setConfirmPasswordIsInvalid(false);
-  }, [enteredConfirmPassword]);
+  }, [enteredPassword, enteredConfirmPassword]);
 
   const submitHandler = () => {
     const emailIsValid = enteredEmail.length > 0 && enteredEmail.includes("@");
@@ -51,60 +45,20 @@ const SignupCreateFamily = () => {
       !emailsAreEqual ||
       !passwordsAreEqual
     ) {
-      if (
-        !emailIsValid &&
-        !passwordIsValid &&
-        !emailsAreEqual &&
-        !passwordsAreEqual
-      ) {
+      if (!emailIsValid || !emailsAreEqual) {
         setEmailIsInvalid(true);
         setConfirmEmailIsInvalid(true);
+        Alert.alert("Invalid credentials!", "Please check entered email.");
+        return;
+      }
+
+      if (!passwordIsValid && !passwordsAreEqual) {
         setPasswordIsInvalid(true);
         setConfirmPasswordIsInvalid(true);
-        Alert.alert(
-          "Invalid credentials!",
-          "Please check your entered credentials."
-        );
-        return;
-      }
-
-      if (!emailIsInvalid) {
-        setEmailIsInvalid(true);
-        Alert.alert("Invalid input.", "Please check your entered email.");
-        return;
-      }
-
-      if (!confirmEmailIsInvalid) {
-        setConfirmEmailIsInvalid(true);
-        Alert.alert(
-          "Invalid input.",
-          "Please check your entered confirm email."
-        );
-        return;
-      }
-
-      if (!passwordIsInvalid) {
-        setPasswordIsInvalid(true);
         Alert.alert("Invalid input.", "Please check your entered password.");
         return;
       }
-
-      if (!confirmPasswordIsInvalid) {
-        setConfirmPasswordIsInvalid(true);
-        Alert.alert(
-          "Invalid input.",
-          "Please check your entered confirm password."
-        );
-        return;
-      }
     }
-    console.log(
-      enteredEmail,
-      enteredConfirmEmail,
-      enteredPassword,
-      enteredConfirmPassword,
-      " - Email, confirm email, password and confirmPassword from SignupScreen"
-    );
     createUser(enteredEmail, enteredPassword);
   };
 
@@ -124,14 +78,14 @@ const SignupCreateFamily = () => {
             onUpdateValue={setEnteredEmail}
             placeholderText={"Email"}
             ioniconsName="mail"
-            inInvalid={emailIsInvalid}
+            isInvalid={emailIsInvalid}
           />
           <Input
             value={enteredConfirmEmail}
             onUpdateValue={setEnteredConfirmEmail}
             placeholderText={"Confirm email"}
             ioniconsName="mail"
-            inInvalid={confirmEmailIsInvalid}
+            isInvalid={confirmEmailIsInvalid}
           />
           <Input
             value={enteredPassword}
@@ -139,7 +93,7 @@ const SignupCreateFamily = () => {
             placeholderText={"Set password"}
             ioniconsName="key"
             secure
-            inInvalid={passwordIsInvalid}
+            isInvalid={passwordIsInvalid}
           />
           <Input
             value={enteredConfirmPassword}
@@ -147,7 +101,7 @@ const SignupCreateFamily = () => {
             placeholderText={"Confirm password"}
             ioniconsName="key"
             secure
-            inInvalid={confirmPasswordIsInvalid}
+            isInvalid={confirmPasswordIsInvalid}
           />
         </View>
         <View style={styles.flatButtonContainer}>

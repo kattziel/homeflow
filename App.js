@@ -19,7 +19,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
 import LoginScreen from "./screens/LoginScreen";
-import WelcomeScreen from "./screens/WelcomeScreen";
 
 import IconButton from "./components/UI/IconButton";
 
@@ -141,20 +140,6 @@ function AuthenticatedStack() {
       <Stack.Screen name="SignupCreateFamily" component={SignupCreateFamily} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      />
       <Stack.Screen
         name="AddFamilyMembersScreen"
         component={AddFamilyMembersScreen}

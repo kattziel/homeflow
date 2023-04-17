@@ -1,27 +1,49 @@
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import FlatButton from "../components/UI/FlatButton";
+import { useState, useEffect, useContext } from "react";
 import { createUser } from "../util/auth";
-
-// import * as SplashScreen from "expo-splash-screen";
-
-// SplashScreen.preventAutoHideAsync();
-// keeping the splash screen visible while fetching resources
+import { AuthContext } from "../store/auth-context";
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
+import FlatButton from "../components/UI/FlatButton";
 
-function SignupCreateFamily() {
-  function validateHandler(credentials) {
-    let { email, confirmEmail, password, confirmPassword } = credentials;
-    email = email.trim();
-    password = password.trim();
+const SignupCreateFamily = () => {
+  const navigation = useNavigation();
+  const authCtx = useContext(AuthContext);
 
-    const emailIsValid = email.includes("@");
-    const emailsAreEqual = email === confirmEmail;
-    const passwordIsValid = password.length >= 6;
-    const passwordsAreEqual = password === confirmPassword;
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
+  const [confirmEmailIsInvalid, setConfirmEmailIsInvalid] = useState(false);
+  const [passwordIsInvalid, setPasswordIsInvalid] = useState(false);
+  const [confirmPasswordIsInvalid, setConfirmPasswordIsInvalid] =
+    useState(false);
+
+  useEffect(() => {
+    setEmailIsInvalid(false);
+  }, [enteredEmail]);
+
+  useEffect(() => {
+    setConfirmEmailIsInvalid(false);
+  }, [enteredConfirmEmail]);
+
+  useEffect(() => {
+    setPasswordIsInvalid(false);
+  }, [enteredPassword]);
+
+  useEffect(() => {
+    setConfirmPasswordIsInvalid(false);
+  }, [enteredConfirmPassword]);
+
+  const submitHandler = () => {
+    const emailIsValid = enteredEmail.length > 0 && enteredEmail.includes("@");
+    const emailsAreEqual = enteredEmail === enteredConfirmEmail;
+    const passwordIsValid = enteredPassword.length > 6;
+    const passwordsAreEqual = enteredPassword === enteredConfirmPassword;
 
     if (
       !emailIsValid ||
@@ -29,74 +51,66 @@ function SignupCreateFamily() {
       !emailsAreEqual ||
       !passwordsAreEqual
     ) {
-      Alert.alert(
-        "Invalid credentials!",
-        "Please check your entered credentials."
-      );
-      setCredentialsInvalid({
-        email: !emailIsValid,
-        confirmEmail: !emailIsValid || !emailsAreEqual,
-        password: !passwordIsValid,
-        confirmPassword: !passwordIsValid || !passwordsAreEqual,
-      });
-      return;
+      if (
+        !emailIsValid &&
+        !passwordIsValid &&
+        !emailsAreEqual &&
+        !passwordsAreEqual
+      ) {
+        setEmailIsInvalid(true);
+        setConfirmEmailIsInvalid(true);
+        setPasswordIsInvalid(true);
+        setConfirmPasswordIsInvalid(true);
+        Alert.alert(
+          "Invalid credentials!",
+          "Please check your entered credentials."
+        );
+        return;
+      }
+
+      if (!emailIsInvalid) {
+        setEmailIsInvalid(true);
+        Alert.alert("Invalid input.", "Please check your entered email.");
+        return;
+      }
+
+      if (!confirmEmailIsInvalid) {
+        setConfirmEmailIsInvalid(true);
+        Alert.alert(
+          "Invalid input.",
+          "Please check your entered confirm email."
+        );
+        return;
+      }
+
+      if (!passwordIsInvalid) {
+        setPasswordIsInvalid(true);
+        Alert.alert("Invalid input.", "Please check your entered password.");
+        return;
+      }
+
+      if (!confirmPasswordIsInvalid) {
+        setConfirmPasswordIsInvalid(true);
+        Alert.alert(
+          "Invalid input.",
+          "Please check your entered confirm password."
+        );
+        return;
+      }
     }
     console.log(
-      email,
-      confirmEmail,
-      password,
-      confirmPassword,
+      enteredEmail,
+      enteredConfirmEmail,
+      enteredPassword,
+      enteredConfirmPassword,
       " - Email, confirm email, password and confirmPassword from SignupScreen"
     );
-  }
+    createUser(enteredEmail, enteredPassword);
+  };
 
-  const navigation = useNavigation();
-  const [credentialsInvalid, setCredentialsInvalid] = useState(false);
-
-  // updating input values
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [enteredConfirmEmail, setEnteredConfirmEmail] = useState("");
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
-
-  function updateInputValueHandler(inputType, enteredValue) {
-    switch (inputType) {
-      case "email":
-        setEnteredEmail(enteredValue);
-        console.log(enteredValue);
-        break;
-      case "confirmEmail":
-        setEnteredConfirmEmail(enteredValue);
-        console.log("value of entered confirm mail", enteredValue);
-        break;
-      case "password":
-        setEnteredPassword(enteredValue);
-        console.log("value of entered password", enteredValue);
-        break;
-      case "confirmPassword":
-        setEnteredConfirmPassword(enteredValue);
-        console.log(enteredValue);
-    }
-  }
-
-  function submitHandler() {
-    onSubmit({
-      email: enteredEmail,
-      confirmEmail: enteredConfirmEmail,
-      password: enteredPassword,
-      confirmPassword: enteredConfirmPassword,
-    });
-  }
-
-  function loginHandler() {
+  function loginRedirectHandler() {
     navigation.replace("LoginScreen");
   }
-
-  function moveForwardHandler() {
-    navigation.replace("CreateProfile");
-  }
-
-  // const [appIsReady, setAppIsReady] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -107,46 +121,37 @@ function SignupCreateFamily() {
         <View style={styles.inputsContainer}>
           <Input
             value={enteredEmail}
+            onUpdateValue={setEnteredEmail}
             placeholderText={"Email"}
             ioniconsName="mail"
-            onUpdateValue={updateInputValueHandler.bind(this, "email")}
-            // inInvalid={familyNameIsInvalid}
+            inInvalid={emailIsInvalid}
           />
           <Input
             value={enteredConfirmEmail}
+            onUpdateValue={setEnteredConfirmEmail}
             placeholderText={"Confirm email"}
             ioniconsName="mail"
-            onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
-            // onUpdateValue={updateInputValueHandler.bind(this, "confirmEmail")}
-            // inInvalid={familyNameIsInvalid}
+            inInvalid={confirmEmailIsInvalid}
           />
           <Input
             value={enteredPassword}
+            onUpdateValue={setEnteredPassword}
             placeholderText={"Set password"}
             ioniconsName="key"
-            onUpdateValue={updateInputValueHandler.bind(this, "password")}
             secure
-            // inInvalid={passwordIsInvalid}
+            inInvalid={passwordIsInvalid}
           />
           <Input
             value={enteredConfirmPassword}
+            onUpdateValue={setEnteredConfirmPassword}
             placeholderText={"Confirm password"}
             ioniconsName="key"
-            onUpdateValue={updateInputValueHandler.bind(
-              this,
-              "confirmPassword"
-            )}
             secure
-            // inInvalid={confirmPasswordIsInvalid}
+            inInvalid={confirmPasswordIsInvalid}
           />
         </View>
-        {/* <View style={styles.undertitleContainer}>
-          <Text style={styles.undertitle}>
-            Your whole family can use this password
-          </Text>
-        </View> */}
         <View style={styles.flatButtonContainer}>
-          <FlatButton style={styles.flatButton} onPress={loginHandler}>
+          <FlatButton style={styles.flatButton} onPress={loginRedirectHandler}>
             <Text style={styles.flatButtonText}>
               Already have an account?{" "}
               <Text style={styles.boldText}>Log in instead.</Text>
@@ -160,7 +165,7 @@ function SignupCreateFamily() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default SignupCreateFamily;
 

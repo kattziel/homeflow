@@ -1,6 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import { ActivityIndicator } from "react-native";
 
-function Button({ onPress, children, disabled, backgroundColor }) {
+function Button({ onPress, children, disabled, backgroundColor, loading = false }) {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -12,7 +13,11 @@ function Button({ onPress, children, disabled, backgroundColor }) {
       disabled={disabled}
     >
       <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}>{children}</Text>
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <Text style={styles.textStyle}>{children}</Text>
+        )}
       </View>
     </Pressable>
   );
@@ -31,7 +36,7 @@ const styles = StyleSheet.create({
     width: "46%",
   },
   viewStyle: {
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   textStyle: {
     color: "gray",

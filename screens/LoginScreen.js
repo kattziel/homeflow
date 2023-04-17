@@ -71,7 +71,7 @@ const LoginScreen = () => {
     setIsAuthenticating(false);
   };
 
-  const createFamilyHandler = () => navigation.navigate("SignupCreateFamily");
+  const createFamilyHandler = () => navigation.navigate("SignupScreen");
 
   const resetPasswordHandler = () => navigation.navigate("ResetPassword");
 

@@ -18,10 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
-// import SignupScreen from "./screens/SignupScreen";
-// import LoginScreen from "./screens/LoginScreen";
-
-import NewLoginScreen from "./screens/NewLoginScreen";
+import LoginScreen from "./screens/LoginScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 
 import IconButton from "./components/UI/IconButton";
@@ -140,7 +137,7 @@ function AuthenticatedStack() {
       }}
     >
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
-      <Stack.Screen name="NewLoginScreen" component={NewLoginScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="SignupCreateFamily" component={SignupCreateFamily} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />

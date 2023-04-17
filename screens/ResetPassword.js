@@ -40,7 +40,7 @@ function ResetPassword() {
   //   if (isReset) {
   //     setTimeout(() => {
   //       setIsReset(false);
-  //       navigation.navigate("NewLoginScreen");
+  //       navigation.navigate("LoginScreen");
   //     }, 2000);
   //   }
   // }, [isReset]);

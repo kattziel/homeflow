@@ -8,7 +8,7 @@ function StartupScreen() {
   const navigation = useNavigation();
 
   function loginButtonHandler() {
-    navigation.navigate("NewLoginScreen");
+    navigation.navigate("LoginScreen");
   }
 
   function createFamilyButtonHandler() {

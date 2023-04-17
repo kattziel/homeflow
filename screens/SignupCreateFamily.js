@@ -89,7 +89,7 @@ function SignupCreateFamily() {
   }
 
   function loginHandler() {
-    navigation.replace("NewLoginScreen");
+    navigation.replace("LoginScreen");
   }
 
   function moveForwardHandler() {

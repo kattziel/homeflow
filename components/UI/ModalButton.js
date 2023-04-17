@@ -5,7 +5,7 @@ function ModalButton(props) {
   const navigation = useNavigation();
   function okResetHandler() {
     props.setIsReset(false);
-    navigation.navigate("NewLoginScreen");
+    navigation.navigate("LoginScreen");
   }
   return (
     <Pressable

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 
@@ -7,20 +7,45 @@ import Input from "../components/UI/Input";
 import ModalButton from "../components/UI/ModalButton";
 
 function ResetPassword() {
-  const [isReset, setIsReset] = useState(false);
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [passwordReseted, setPasswordReseted] = useState(false);
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  const backButtonHandler = () => {
+    navigation.goBack();
+  };
+
+  useEffect(() => {
+    setEmailIsInvalid(false);
+  }, [enteredEmail]);
+
+  const submitHandler = () => {
+    const emailIsValid = enteredEmail.length > 6 && enteredEmail.includes("@");
+    if (!emailIsValid) {
+      setEmailIsInvalid(true);
+      Alert.alert(
+        "Invalid credentials.",
+        "Please check entered email that was used to create an account."
+      );
+      return;
+    }
+    setIsAuthenticating(true);
+    console.log(isAuthenticating);
+  };
 
   let resetModalContent = (
     <View style={styles.overlay}>
       <View style={styles.resetModalContainer}>
         <Text style={styles.resetModalText}>
           An email will be sent to{" "}
-          <Text style={styles.resetBoldModalText}>
-            jekaterina.zielinska@gmail.com
-          </Text>{" "}
-          with instructions on how to reset your password
+          <Text style={styles.resetBoldModalText}>{enteredEmail}</Text> with
+          instructions on how to reset your password
         </Text>
         <View style={styles.buttonContainer}>
-          <ModalButton setIsReset={setIsReset} />
+          <ModalButton
+            setIsReset={setPasswordReseted}
+          />
         </View>
       </View>
     </View>
@@ -28,12 +53,9 @@ function ResetPassword() {
 
   const navigation = useNavigation();
 
-  function backButtonHandler() {
-    navigation.goBack();
-  }
-
-  function resetPasswordHandler() {
-    setIsReset(true);
+  function resetInputValueHandler(enteredText) {
+    setEnteredEmail(enteredText);
+    console.log(enteredEmail);
   }
 
   // useEffect(() => {
@@ -45,12 +67,6 @@ function ResetPassword() {
   //   }
   // }, [isReset]);
 
-  const [enteredResetPassword, setEnteredResetPassword] = useState("");
-
-  function resetInputValueHandler(enteredText) {
-    setEnteredResetPassword(enteredText);
-    console.log(enteredResetPassword);
-  }
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -58,11 +74,12 @@ function ResetPassword() {
       </View>
       <View style={styles.inputContainer}>
         <Input
-          value={enteredResetPassword}
+          value={enteredEmail}
+          onUpdateValue={setEnteredEmail}
           keyboardType="email-address"
-          placeholderText={"Email or username"}
+          placeholderText={"Email used for creating account"}
           ioniconsName="mail"
-          onUpdateValue={resetInputValueHandler}
+          isInvalid={emailIsInvalid}
         />
       </View>
       <View style={styles.buttonsContainer}>
@@ -70,12 +87,11 @@ function ResetPassword() {
           <Button onPress={backButtonHandler}>Back</Button>
         </View>
         <View style={styles.buttonContainer}>
-          <Button onPress={resetPasswordHandler}>Reset</Button>
+          <Button onPress={submitHandler} loading={isAuthenticating}>Reset</Button>
         </View>
       </View>
       <View style={styles.modalContainer}>
-        {setIsReset ? resetModalContent : null}
-        {/* {setIsReset ? null : resetModalContent} */}
+        {passwordReseted ? resetModalContent : null}
       </View>
     </View>
   );

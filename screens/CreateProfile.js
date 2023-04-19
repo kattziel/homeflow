@@ -1,96 +1,77 @@
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, ScrollView, StyleSheet, SafeAreaView, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
-// import EmailReminder from "../components/UI/EmailReminder";
-// import ResetPassword from "./ResetPassword";
-import ErrorModal from "../components/UI/ErrorModal";
 
-function CreateProfile() {
+const CreateProfile = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [enteredRole, setEnteredRole] = useState("");
 
-  function updateInputValueHandler(inputType, enteredValue) {
-    switch (inputType) {
-      case "name":
-        setEnteredName(enteredValue);
-        console.log(enteredValue);
-        break;
-      case "email":
-        setEnteredEmail(enteredValue);
-        console.log(enteredValue);
-        break;
-      case "age":
-        setEnteredAge(enteredValue);
-        console.log(enteredValue);
-        break;
-      case "role":
-        setEnteredRole(enteredValue);
-        console.log(enteredValue);
-        break;
-    }
-  }
-
   const navigation = useNavigation();
 
-  function moveForwardHandler() {
+  const moveForwardHandler = () => {
     navigation.navigate("AddFamilyMembersScreen");
-  }
+  };
 
-  function moveBackwardsHandler() {
+  const moveBackwardsHandler = () => {
     navigation.goBack();
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <ScrollView>
         <View style={styles.headerContainer}>
           <Text style={styles.text}>Create your profile</Text>
+        </View>
+        <View style={styles.profilePhotoContainer}>
+          <Pressable>
+            <View style={styles.profilePhotoPicker}>
+              <Ionicons name="camera-outline" size={40} color={color} />
+            </View>
+          </Pressable>
+          <Text style={styles.profilePhotoHeader}>Choose a profile photo!</Text>
         </View>
         <View style={styles.inputsContainer}>
           <Input
             value={enteredName}
+            onUpdateValue={setEnteredName}
             placeholderText={"Name"}
             ioniconsName="person"
-            onUpdateValue={updateInputValueHandler.bind(this, "name")}
           />
           <Input
             value={enteredEmail}
+            onUpdateValue={setEnteredEmail}
             placeholderText={"Email"}
             ioniconsName="mail"
-            onUpdateValue={updateInputValueHandler.bind(this, "email")}
             keyboardType="email-address"
           />
           <Input
             value={enteredAge}
+            onUpdateValue={setEnteredAge}
             placeholderText={"Age"}
             ioniconsName="heart"
-            onUpdateValue={updateInputValueHandler.bind(this, "age")}
             keyboardType="numeric"
           />
           <Input
             value={enteredRole}
+            onUpdateValue={setEnteredRole}
             placeholderText={"Role (optional)"}
             ioniconsName="people"
-            onUpdateValue={updateInputValueHandler.bind(this, "role")}
           />
         </View>
         <View style={styles.buttonsContainer}>
           <Button onPress={moveBackwardsHandler}>Back</Button>
           <Button onPress={moveForwardHandler}>Next</Button>
         </View>
-        <View>
-          {/* <ResetPassword /> */}
-          {/* <EmailReminder email={"jekaterina.zielinska@gmail.com"} /> */}
-          <ErrorModal />
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 export default CreateProfile;
 
@@ -99,26 +80,37 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 20,
+    marginTop: 50
   },
   headerContainer: {
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   text: {
     fontSize: 28,
     textAlign: "center",
   },
-  undertitleContainer: {
-    paddingHorizontal: 35,
-    paddingTop: 20,
-  },
-  undertitle: {
-    textAlign: "center",
-    fontSize: 16,
-    paddingBottom: 30,
-  },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 30,
+  },
+  profilePhotoContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  profilePhotoPicker: {
+    width: 90,
+    height: 90,
+    borderColor: "lightgray",
+    borderWidth: "2px",
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  profilePhotoHeader: {
+    textAlign: "center",
+    marginBottom: 20,
+    marginTop: 10,
+    color: "darkgrey",
   },
 });

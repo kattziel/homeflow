@@ -19,8 +19,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
 import LoginScreen from "./screens/LoginScreen";
-
-import IconButton from "./components/UI/IconButton";
+import SignupScreen from "./screens/SignupScreen";
+import ResetPassword from "./screens/ResetPassword";
 
 import CalendarScreen from "./screens/BottomTabScreens/CalendarScreen";
 import FamilyScreen from "./screens/BottomTabScreens/FamilyScreen";
@@ -28,12 +28,10 @@ import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
 import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
-import SignupScreen from "./screens/SignupScreen";
 import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
 import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
-import ResetPassword from "./screens/ResetPassword";
 
 // import Wrapper from "./components/Wrapper";
 
@@ -122,6 +120,10 @@ function AuthStack() {
         contentStyle: { backgroundColor: Colors.lightViolet },
       }}
     >
+      <Stack.Screen name="StartupScreen" component={StartupScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="SignupScreen" component={SignupScreen} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
     </Stack.Navigator>
   );
 }
@@ -132,13 +134,9 @@ function AuthenticatedStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }}
+      }} 
     >
-      <Stack.Screen name="StartupScreen" component={StartupScreen} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="SignupScreen" component={SignupScreen} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
-      <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen
         name="AddFamilyMembersScreen"
         component={AddFamilyMembersScreen}

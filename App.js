@@ -134,7 +134,7 @@ function AuthenticatedStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }} 
+      }}
     >
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen

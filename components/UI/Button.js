@@ -30,13 +30,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonContainer: {
-    borderColor: "gray",
+    borderColor: "lightgray",
     borderWidth: 1,
     paddingVertical: 10,
     width: "46%",
   },
   viewStyle: {
     paddingVertical: 5,
+    minWidth: 110,
   },
   textStyle: {
     color: "gray",
@@ -46,4 +47,7 @@ const styles = StyleSheet.create({
   disabled: {
     opacity: 0.3,
   },
+  pressed: {
+    backgroundColor: "#D8D8D8"
+  }
 });

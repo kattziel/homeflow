@@ -45,7 +45,7 @@ const CreateProfile = () => {
     const nameIsValid =
       typeof enteredName === "string" && enteredName.trim().length > 1;
     const ageIsValid =
-      typeof enteredAge === "number" && enteredAge > 11 && enteredAge < 100;
+      typeof +enteredAge === "number" && +enteredAge > 11 && +enteredAge < 100;
     const roleIsValid =
       typeof enteredRole === "string" && enteredRole.trim().length > 2;
 

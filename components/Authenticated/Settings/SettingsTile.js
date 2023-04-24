@@ -12,7 +12,11 @@ const SettingsTile = ({ imageName, title }) => {
       </View>
       <View style={styles.arrowContainer}>
         <Pressable>
-          <Ionicons name="chevron-forward-outline" size={20} color="gray"></Ionicons>
+          <Ionicons
+            name="chevron-forward-outline"
+            size={20}
+            color="gray"
+          ></Ionicons>
         </Pressable>
       </View>
     </View>
@@ -23,7 +27,15 @@ export default SettingsTile;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
+    sshadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2.5,
+    elevation: 5,
     margin: 10,
     flexDirection: "row",
     height: 50,

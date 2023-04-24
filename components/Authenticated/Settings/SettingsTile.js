@@ -3,7 +3,11 @@ import { Ionicons } from "@expo/vector-icons";
 
 const SettingsTile = ({ imageName, title }) => {
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={({ pressed }) =>
+        pressed ? [styles.container, styles.pressedContainer] : styles.container
+      }
+    >
       <View style={styles.imageContainer}>
         <Ionicons name={imageName} size={25} color="gray"></Ionicons>
       </View>
@@ -19,7 +23,7 @@ const SettingsTile = ({ imageName, title }) => {
           ></Ionicons>
         </Pressable>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -28,11 +32,11 @@ export default SettingsTile;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    sshadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
     },
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowRadius: 2.5,
     elevation: 5,
@@ -41,6 +45,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: "95%",
     alignItems: "center",
+  },
+  pressedContainer: {
+    backgroundColor: "#ededed",
   },
   imageContainer: {
     flex: 2,

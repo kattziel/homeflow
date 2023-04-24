@@ -32,7 +32,9 @@ import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
 import EditFamilyMemberProfile from "./screens/EditFamilyMemberProfile";
 import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
+
 import Settings from "./components/Authenticated/Settings/Settings";
+import TaskCategories from "./components/Authenticated/Tasks/TaskCategories";
 
 // import Wrapper from "./components/Wrapper";
 
@@ -137,6 +139,7 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen

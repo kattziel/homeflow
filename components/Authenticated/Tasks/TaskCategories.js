@@ -31,12 +31,46 @@ const TaskCategories = () => {
             imageName="mail"
             backgroundColor="#2e4a9e"
           />
-          {/* <TaskIcon />
-          <TaskIcon />
-          <TaskIcon />
-          <TaskIcon />
-          <TaskIcon />
-          <TaskIcon /> */}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />{" "}
+          <TaskIcon
+            subtitle="mail"
+            imageName="mail"
+            backgroundColor="#2e4a9e"
+          />
         </View>
       </View>
     </SafeAreaView>

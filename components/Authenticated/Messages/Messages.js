@@ -19,7 +19,7 @@ const Messages = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text>Back</Text>
         </TouchableOpacity>
-      ),
+      ), 
     });
   }, [navigation]);
 

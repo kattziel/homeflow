@@ -141,8 +141,8 @@ function AuthenticatedStack() {
       }}
     >
       <Stack.Screen name="Messages" component={Messages} />
-      <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen
         name="AddFamilyMembersScreen"

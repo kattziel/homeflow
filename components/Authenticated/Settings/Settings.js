@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import SettingsTile from "./SettingsTile";
 
 const Settings = () => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Settings</Text>
         </View>
@@ -20,7 +20,7 @@ const Settings = () => {
           <SettingsTile imageName="share-social-outline" title="Share" />
           <SettingsTile imageName="log-out-outline" title="Log out" />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

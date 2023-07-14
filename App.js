@@ -110,7 +110,6 @@ function BottomOverview() {
           ),
         }}
       />
-      {/* chat screen? */}
     </BottomTab.Navigator>
   );
 }

@@ -7,6 +7,7 @@ import { AuthContext } from "../store/auth-context";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import FlatButton from "../components/UI/FlatButton";
+import {Colors} from '../constants/Colors';
 
 const SignupScreen = () => {
   const navigation = useNavigation();
@@ -92,7 +93,7 @@ const SignupScreen = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.headerContainer}>
-          <Text style={styles.header}>Create family</Text>
+          <Text style={styles.header}>Sign up</Text>
         </View>
         <View style={styles.inputsContainer}>
           <Input
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 28,
-    textAlign: "center",
+    textAlign: "center"
   },
   undertitleContainer: {
     paddingHorizontal: 35,

@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import StartScreenButton from "../components/UI/StartScreenButton";
-import Button from "../components/UI/Button";
 
 function StartupScreen() {
   const navigation = useNavigation();
@@ -11,22 +10,25 @@ function StartupScreen() {
     navigation.navigate("LoginScreen");
   }
 
-  function createFamilyButtonHandler() {
-    navigation.replace("SignupScreen");
+  function signupButtonHandler() {
+    navigation.navigate("SignupScreen");
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.header}>Welcome</Text>
-        <Text style={styles.text}>to HomeFlow!</Text>
+        <Text style={styles.text}>
+          to <Text style={styles.innerText1}>Home</Text>
+          <Text style={styles.innerText2}>Flow!</Text>
+        </Text>
       </View>
       <View style={styles.buttonsContainer}>
         <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
           Log in
         </StartScreenButton>
-        <StartScreenButton onPress={createFamilyButtonHandler} color="#d391b3">
-          Create family
+        <StartScreenButton onPress={signupButtonHandler} color="#d391b3">
+          Sign up
         </StartScreenButton>
       </View>
     </View>
@@ -56,6 +58,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     color: "#615E58",
+  },
+  innerText1: {
+    color: "#91bfdb",
+  },
+  innerText2: {
+    color: "#d391b3",
   },
   buttonsContainer: {
     flex: 1,

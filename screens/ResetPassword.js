@@ -22,6 +22,7 @@ function ResetPassword() {
 
   const submitHandler = () => {
     const emailIsValid = enteredEmail.length > 6 && enteredEmail.includes("@");
+
     if (!emailIsValid) {
       setEmailIsInvalid(true);
       Alert.alert(
@@ -30,7 +31,9 @@ function ResetPassword() {
       );
       return;
     }
+
     setIsAuthenticating(true);
+    setPasswordReseted(true);
     console.log(isAuthenticating);
   };
 
@@ -38,34 +41,18 @@ function ResetPassword() {
     <View style={styles.overlay}>
       <View style={styles.resetModalContainer}>
         <Text style={styles.resetModalText}>
-          An email will be sent to{" "}
-          <Text style={styles.resetBoldModalText}>{enteredEmail}</Text> with
-          instructions on how to reset your password
+          An email will be sent to
+          <Text style={styles.resetBoldModalText}>{enteredEmail}</Text>
+          with instructions on how to reset your password
         </Text>
         <View style={styles.buttonContainer}>
-          <ModalButton
-            setIsReset={setPasswordReseted}
-          />
+          <ModalButton setIsReset={setPasswordReseted} />
         </View>
       </View>
     </View>
   );
 
   const navigation = useNavigation();
-
-  function resetInputValueHandler(enteredText) {
-    setEnteredEmail(enteredText);
-    console.log(enteredEmail);
-  }
-
-  // useEffect(() => {
-  //   if (isReset) {
-  //     setTimeout(() => {
-  //       setIsReset(false);
-  //       navigation.navigate("LoginScreen");
-  //     }, 2000);
-  //   }
-  // }, [isReset]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -88,7 +75,9 @@ function ResetPassword() {
           <Button onPress={backButtonHandler}>Back</Button>
         </View>
         <View style={styles.buttonContainer}>
-          <Button onPress={submitHandler} loading={isAuthenticating}>Reset</Button>
+          <Button onPress={submitHandler} loading={isAuthenticating}>
+            Reset
+          </Button>
         </View>
       </View>
       <View style={styles.modalContainer}>
@@ -110,6 +99,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 28,
     textAlign: "center",
+    color: "#000000b0"
   },
   inputContainer: {
     marginTop: 30,

@@ -5,4 +5,5 @@ export const Colors = {
     Yellow: "#fbf4c5",
     Pink: "#f04b8d",
     Green: "#04ccc3",
+    darkGray: "#0000008b"
 }

@@ -15,23 +15,23 @@ function StartupScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.header}>Welcome</Text>
-        <Text style={styles.text}>
-          to <Text style={styles.innerText1}>Home</Text>
-          <Text style={styles.innerText2}>Flow!</Text>
-        </Text>
+      <View style={styles.container}>
+        <View style={styles.textContainer}>
+          <Text style={styles.header}>Welcome</Text>
+          <Text style={styles.text}>
+            to <Text style={styles.innerText1}>Home</Text>
+            <Text style={styles.innerText2}>Flow!</Text>
+          </Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
+            Log in
+          </StartScreenButton>
+          <StartScreenButton onPress={signupButtonHandler} color="#d391b3">
+            Sign up
+          </StartScreenButton>
+        </View>
       </View>
-      <View style={styles.buttonsContainer}>
-        <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
-          Log in
-        </StartScreenButton>
-        <StartScreenButton onPress={signupButtonHandler} color="#d391b3">
-          Sign up
-        </StartScreenButton>
-      </View>
-    </View>
   );
 }
 

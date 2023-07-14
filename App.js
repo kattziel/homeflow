@@ -118,7 +118,7 @@ function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
@@ -194,16 +194,12 @@ function Root() {
 }
 
 export default function App() {
-  const gradientColors = ["#E0EAFC", "#FFFFFF"];
-
   return (
     <>
       <StatusBar style="dark" />
-      <LinearGradient colors={gradientColors} style={styles.container}>
         <AuthContextProvider>
           <Root />
         </AuthContextProvider>
-      </LinearGradient>
     </>
   );
 }

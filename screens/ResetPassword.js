@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 
@@ -68,7 +68,7 @@ function ResetPassword() {
   // }, [isReset]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Reset Password</Text>
       </View>
@@ -80,6 +80,7 @@ function ResetPassword() {
           placeholderText={"Email used for creating account"}
           ioniconsName="mail"
           isInvalid={emailIsInvalid}
+          fontSize={6}
         />
       </View>
       <View style={styles.buttonsContainer}>
@@ -93,7 +94,7 @@ function ResetPassword() {
       <View style={styles.modalContainer}>
         {passwordReseted ? resetModalContent : null}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

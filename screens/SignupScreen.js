@@ -67,10 +67,10 @@ const SignupScreen = () => {
       }
     }
     createUser(enteredEmail, enteredPassword);
-    setIsAuthenticating(true);
+    // setIsAuthenticating(true);
   };
 
-  const signupHandler = async (enteredEmail, enteredPassword) => {
+  const signupHandler = async(enteredEmail, enteredPassword) => {
     setIsAuthenticating(true);
     try {
       const token = await createUser(enteredEmail, enteredPassword);

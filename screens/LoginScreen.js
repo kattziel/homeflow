@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, SafeAreaView, Alert } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Alert, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../store/auth-context";
 import { loginUser } from "../util/auth";
+import { Keyboard } from 'react-native'
 
 import FlatButton from "../components/UI/FlatButton";
 import Input from "../components/UI/Input";
@@ -53,6 +54,7 @@ const LoginScreen = () => {
         Alert.alert("Invalid input.", "Please check your entered password.");
         return;
       }
+      Keyboard.dismiss();
     }
     loginHandler(enteredEmail, enteredPassword);
   };
@@ -77,7 +79,7 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.text}>Your account</Text>
         </View>
@@ -115,7 +117,7 @@ const LoginScreen = () => {
             Create family
           </FlatButton>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -127,6 +129,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 20,
+  },
+  scrollContainer: {
+    flex: 1,
+    justifyContent: "center",
   },
   titleContainer: {
     paddingBottom: 30,

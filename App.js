@@ -119,9 +119,7 @@ function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.lightViolet },
-        headerTintColor: Colors.lightPink,
-        contentStyle: { backgroundColor: Colors.lightViolet },
+        headerShown: false
       }}
     >
       <Stack.Screen name="StartupScreen" component={StartupScreen} />
@@ -140,8 +138,8 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen

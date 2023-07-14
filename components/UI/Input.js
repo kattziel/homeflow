@@ -1,7 +1,5 @@
-import { Text, View, StyleSheet, TextInput } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { View, StyleSheet, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
 
 function Input({
   value,
@@ -25,15 +23,14 @@ function Input({
       <View style={styles.inputContainer}>
         <TextInput
           style={
-            inputIsValid ? styles.input : styles.inputInvalid && styles.input
+            [inputIsValid ? styles.input : styles.inputInvalid && styles.input]
           }
           keyboardType={keyboardType}
           secureTextEntry={secure}
           value={value}
           onChangeText={onUpdateValue}
           onInputChange={onInputChange}
-          placeholder={placeholderText}
-        />
+          placeholder={placeholderText}        />
       </View>
     </View>
   );

@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Message from "./Message";
 
 const Messages = () => {
   const navigation = useNavigation();
@@ -23,16 +24,22 @@ const Messages = () => {
 
         <View style={styles.writeMessageContainer}>
           <TextInput style={styles.messageInput}>Write a message</TextInput>
-
           <Pressable style={styles.buttonView}>
-              <Text style={styles.buttonText}>Send</Text>
+            <Text style={styles.buttonText}>Send</Text>
           </Pressable>
         </View>
 
-        <View style={styles.infoContainer}>
-          <Text>No more data to display</Text>
+        <View style={styles.dateContainer}>
+          <Text style={styles.date}> TUE 25 APR </Text>
         </View>
-        <View style={styles.messagesContainer}></View>
+
+        <View style={styles.messagesContainer}>
+          <Message />
+        </View>
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoContainerText}>No more data to display</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: "row",
-    height: "15%",
+    height: "10%",
     justifyContent: "center",
     alignItems: "center",
     borderBottomWidth: 0.3,
@@ -64,41 +71,60 @@ const styles = StyleSheet.create({
   },
   writeMessageContainer: {
     flexDirection: "row",
-    height: "8%",
+    height: "10%",
     justifyContent: "center",
-    alignItems: "center",
-    // marginVertical: 10,
     borderBottomWidth: 0.3,
-    borderColor: "lightgray",
-    // backgroundColor: "blue"
+    borderColor: "#bababa",
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   messageInput: {
-    flex: 4,
+    flex: 1,
     backgroundColor: "white",
-    height: "70%",
+    // height: "70%",
     marginHorizontal: 8,
     color: "lightgray",
     fontSize: 18,
-    marginVertical: 10,
-  },
-  buttonContainer: {
-    marginRight: 8,
   },
   buttonView: {
     borderWidth: 1,
     borderRadius: 3,
     borderColor: "darkgreen",
-    justifyContent: "center",
-    alignItems: "center",
-    opacity: 0.5,
+    opacity: 0.3,
     paddingVertical: 5,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    borderWidth: 2,
   },
   buttonText: {
     fontSize: 16,
     color: "darkgreen",
-    // opacity: 0.5,
   },
-  infoContainer: {},
-  messagesContainer: {},
+  dateContainer: {
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ededed",
+  },
+  date: {
+    color: "#9c9b9bff",
+    fontSize: 16,
+  },
+  infoContainer: {
+    borderTopWidth: 1,
+    borderColor: "#bababa",
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ededed",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  infoContainerText: {
+    color: "gray",
+    fontSize: 16,
+  },
+  messagesContainer: {
+    paddingVertical: 15,
+  },
 });

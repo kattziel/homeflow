@@ -6,36 +6,36 @@ const Message = ({ date, message, person }) => {
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <View style={styles.senderContainer}>
-          <Ionicons name="mail" size={28}></Ionicons>
-          <Text>You</Text>
+          <Ionicons name="happy-outline" size={28} color="pink"></Ionicons>
+          <Text style={styles.senderText}>You</Text>
         </View>
-        <View>
-          <View style={styles.messageContainer}>
-            <Text style={styles.messageText}>{message}</Text>
+
+        <View style={styles.messageContainer}>
+          <View style={styles.messageView}>
+            <Text style={styles.messageText}>Testing chat</Text>
           </View>
+
           <View style={styles.dateContainer}>
-            <Text style={styles.date}>{date}</Text>
+            <Text style={styles.date}>16:10</Text>
           </View>
         </View>
-        <View style={styles.deleteMessage}>
+
+        <View style={styles.deleteMessageContainer}>
           <Pressable>
-            <Ionicons name="exit" size={28}></Ionicons>
+            <Ionicons name="close-outline" size={16}></Ionicons>
           </Pressable>
         </View>
       </View>
 
       <View style={styles.feedbackContainer}>
-        <Pressable>
-          <View style={styles.feedbackView}>
-            <Ionicons name="love" size={20}></Ionicons>
-            <Text style={styles.feedbackLike}>Like</Text>
-          </View>
+        <Pressable style={styles.feedbackView}>
+          <Ionicons name="heart" size={20} color="lightgray"></Ionicons>
+          <Text style={styles.feedbackText}>Like</Text>
         </Pressable>
-        <Pressable>
-          <View style={styles.feedbackView}>
-            <Ionicons name="chat" size={20}></Ionicons>
-            <Text style={styles.feedbackComment}>Comment</Text>
-          </View>
+
+        <Pressable style={styles.feedbackView}>
+          <Ionicons name="chatbubble" size={20} color="lightgray"></Ionicons>
+          <Text style={styles.feedbackText}>Comment</Text>
         </Pressable>
       </View>
     </View>
@@ -44,4 +44,56 @@ const Message = ({ date, message, person }) => {
 
 export default Message;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {},
+  contentContainer: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderColor: "lightgray",
+    paddingBottom: 10
+  },
+  senderContainer: {
+    flex: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  senderText: {
+    color: "gray",
+  },
+  messageContainer: {
+    flex: 6,
+    justifyContent: "space-around"
+  },
+  messageText: {
+    fontSize: 20,
+    color: "gray",
+  },
+  date: {
+    fontSize: 15,
+    color: "gray",
+  },
+  deleteMessageContainer: {
+    flex: 1,
+    paddingRight: 8,
+    paddingTop: 4,
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+  },
+  feedbackContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  feedbackView: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  feedbackText: {
+    color: "lightgray",
+    paddingHorizontal: 4,
+  },
+});

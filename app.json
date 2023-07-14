@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "makemegrow",
-    "slug": "makemegrow",
+    "name": "homeflow",
+    "slug": "homeflow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

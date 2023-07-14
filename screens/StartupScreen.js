@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import StartScreenButton from "../components/UI/StartScreenButton";
+import WideButton from '../components/UI/WideButton';
 
 function StartupScreen() {
   const navigation = useNavigation();
@@ -24,12 +24,12 @@ function StartupScreen() {
           </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <StartScreenButton onPress={loginButtonHandler} color="#91bfdb">
+          <WideButton onPress={loginButtonHandler} color="#91bfdb">
             Log in
-          </StartScreenButton>
-          <StartScreenButton onPress={signupButtonHandler} color="#d391b3">
+          </WideButton>
+          <WideButton onPress={signupButtonHandler} color="#d391b3">
             Sign up
-          </StartScreenButton>
+          </WideButton>
         </View>
       </View>
   );

@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const SettingsTile = ({ imageName, title }) => {
+const SettingsTile = ({ imageName, title, onPress }) => {
   return (
     <Pressable
+      onPress={onPress}
       style={({ pressed }) =>
         pressed ? [styles.container, styles.pressedContainer] : styles.container
       }

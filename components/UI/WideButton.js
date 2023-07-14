@@ -1,7 +1,7 @@
 import { ActivityIndicator } from "react-native";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 
-function StartScreenButton({ onPress, children, color, loading = false }) {
+function WideButton({ onPress, children, color, loading = false }) {
   const borderColor = color;
   const fontColor = color;
   return (
@@ -26,7 +26,7 @@ function StartScreenButton({ onPress, children, color, loading = false }) {
   );
 }
 
-export default StartScreenButton;
+export default WideButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {

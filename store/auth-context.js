@@ -9,7 +9,7 @@ export const AuthContext = createContext({
   // default values
 });
 
-function AuthContextProvider({ children }) {
+const AuthContextProvider = ({ children }) => {
   //wrapper around other components
 
   const [authToken, setAuthToken] = useState();

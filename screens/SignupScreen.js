@@ -7,11 +7,11 @@ import { AuthContext } from "../store/auth-context";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import FlatButton from "../components/UI/FlatButton";
-import {Colors} from '../constants/Colors';
 
 const SignupScreen = () => {
   const navigation = useNavigation();
   const authCtx = useContext(AuthContext);
+
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -22,8 +22,7 @@ const SignupScreen = () => {
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
   const [confirmEmailIsInvalid, setConfirmEmailIsInvalid] = useState(false);
   const [passwordIsInvalid, setPasswordIsInvalid] = useState(false);
-  const [confirmPasswordIsInvalid, setConfirmPasswordIsInvalid] =
-    useState(false);
+  const [confirmPasswordIsInvalid, setConfirmPasswordIsInvalid] = useState(false);
 
   useEffect(() => {
     setEmailIsInvalid(false);
@@ -35,10 +34,24 @@ const SignupScreen = () => {
     setConfirmPasswordIsInvalid(false);
   }, [enteredPassword, enteredConfirmPassword]);
 
+  async function signupHandler(enteredEmail, enteredPassword) {
+    setIsAuthenticating(true);
+    try {
+      const token = await createUser(enteredEmail, enteredPassword);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        "Authentication failed!",
+        "Could not sign you up, please check your credentials or try again later."
+      );
+    }
+    setIsAuthenticating(false);
+  };
+
   const submitHandler = () => {
     const emailIsValid = enteredEmail.length > 0 && enteredEmail.includes("@");
     const emailsAreEqual = enteredEmail === enteredConfirmEmail;
-    const passwordIsValid = enteredPassword.length > 6;
+    const passwordIsValid = enteredPassword.length > 5;
     const passwordsAreEqual = enteredPassword === enteredConfirmPassword;
 
     if (
@@ -67,23 +80,9 @@ const SignupScreen = () => {
         Alert.alert("Invalid credentials!", "Please check entered email.");
       }
     }
-    createUser(enteredEmail, enteredPassword);
-    // setIsAuthenticating(true);
+    signupHandler(enteredEmail, enteredPassword);
   };
 
-  const signupHandler = async(enteredEmail, enteredPassword) => {
-    setIsAuthenticating(true);
-    try {
-      const token = await createUser(enteredEmail, enteredPassword);
-      authCtx.authenticate(token);
-    } catch (error) {
-      Alert.alert(
-        "Authentication failed!",
-        "Could not sign you up, please check your credentials or try again later."
-      );
-    }
-    setIsAuthenticating(false);
-  };
 
   function loginRedirectHandler() {
     navigation.replace("LoginScreen");

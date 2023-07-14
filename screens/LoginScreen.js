@@ -10,11 +10,12 @@ import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../store/auth-context";
 import { loginUser } from "../util/auth";
+
 import { Colors } from "../constants/Colors";
 
-import FlatButton from "../components/UI/FlatButton";
 import Input from "../components/UI/Input";
-import StartScreenButton from "../components/UI/StartScreenButton";
+import FlatButton from "../components/UI/FlatButton";
+import WideButton from "../components/UI/WideButton";
 
 const LoginScreen = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -35,9 +36,25 @@ const LoginScreen = () => {
     setPasswordIsInvalid(false);
   }, [enteredPassword]);
 
+  async function loginHandler(email, password) {
+    setIsAuthenticating(true);
+    try {
+      const token = await loginUser(email, password);
+      console.log(token);
+      authCtx.authenticate(token);
+    } catch (error) {
+      console.log(error);
+      Alert.alert(
+        "Authentication failed!",
+        "Could not log you in, please check your credentials or try again later."
+      );
+    }
+    setIsAuthenticating(false);
+  };
+
   const submitHandler = () => {
     const emailIsValid = enteredEmail.length > 0 && enteredEmail.includes("@");
-    const passwordIsValid = enteredPassword.length > 6;
+    const passwordIsValid = enteredPassword.length > 5;
 
     if (!emailIsValid || !passwordIsValid) {
       if (!emailIsValid && !passwordIsValid) {
@@ -63,20 +80,7 @@ const LoginScreen = () => {
       }
     }
     loginHandler(enteredEmail, enteredPassword);
-  };
-
-  const loginHandler = async (email, password) => {
-    setIsAuthenticating(true);
-    try {
-      const token = await loginUser(email, password);
-      authCtx.authenticate(token);
-    } catch (error) {
-      Alert.alert(
-        "Authentication failed!",
-        "Could not log you in, please check your credentials or try again later."
-      );
-    }
-    setIsAuthenticating(false);
+    console.log(enteredEmail, enteredPassword);
   };
 
   const createFamilyHandler = () => navigation.navigate("SignupScreen");
@@ -107,13 +111,13 @@ const LoginScreen = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <StartScreenButton
+          <WideButton
             loading={isAuthenticating}
             color="#91bfdb"
             onPress={submitHandler}
           >
             Log in
-          </StartScreenButton>
+          </WideButton>
         </View>
         <View style={styles.flatButtonsContainer}>
           <FlatButton style={styles.flatButton} onPress={resetPasswordHandler}>

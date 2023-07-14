@@ -3,10 +3,6 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
-// import * as SplashScreen from 'expo-splash-screen';
-
-// SplashScreen.preventAutoHideAsync();
-// // keeping the splash screen visible while fetching resources
 
 import * as native from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -188,7 +184,7 @@ function Root() {
     fetchToken();
   }, []);
   if (isTryingLogin) {
-    return <AppLoading />;
+    <AppLoading />;
   }
   return <Navigation />;
 }
@@ -197,9 +193,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-        <AuthContextProvider>
-          <Root />
-        </AuthContextProvider>
+      <AuthContextProvider>
+        <Root />
+      </AuthContextProvider>
     </>
   );
 }

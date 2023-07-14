@@ -1,7 +1,15 @@
 import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import SettingsTile from "./SettingsTile";
+import { useContext } from "react";
+import { AuthContext } from "../../../store/auth-context";
 
 const Settings = () => {
+  const authCtx = useContext(AuthContext);
+
+  const onLogoutHandler = () => {
+    authCtx.logout();
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <ScrollView style={styles.container}>
@@ -18,7 +26,11 @@ const Settings = () => {
           />
           <SettingsTile imageName="bulb-outline" title="Feedback" />
           <SettingsTile imageName="share-social-outline" title="Share" />
-          <SettingsTile imageName="log-out-outline" title="Log out" />
+          <SettingsTile
+            onPress={onLogoutHandler}
+            imageName="log-out-outline"
+            title="Log out"
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -38,5 +50,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   header: { fontSize: 25, color: "gray" },
-
 });

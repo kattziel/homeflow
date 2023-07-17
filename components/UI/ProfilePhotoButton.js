@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     minWidth: 120,
     borderColor: "lightgray"
   },
-  text: { fontSize: 20, textAlign: "center" },
+  text: { fontSize: 15, textAlign: "center" },
   pressed: {backgroundColor: "#D8D8D8"}
 });

@@ -80,7 +80,6 @@ const LoginScreen = () => {
       }
     }
     loginHandler(enteredEmail, enteredPassword);
-    console.log(enteredEmail, enteredPassword);
   };
 
   const createFamilyHandler = () => navigation.navigate("SignupScreen");

@@ -10,7 +10,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "./constants/Colors";
-import { LinearGradient } from "expo-linear-gradient";
 
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
@@ -33,8 +32,6 @@ import Settings from "./components/Authenticated/Settings/Settings";
 import TaskCategories from "./components/Authenticated/Tasks/TaskCategories";
 import Messages from "./components/Authenticated/Messages/Messages";
 
-// import Wrapper from "./components/Wrapper";
-
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -42,18 +39,17 @@ function BottomOverview() {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.lightGreen },
-        // backgroundColor of the header
+        headerShown: false,
+        headerStyle: {backgroundColor: "white"},
         headerTintColor: "white",
-        // color of the header title
-        tabBarStyle: { backgroundColor: Colors.lightGreen },
-        // background Color for the bottom tab
-        tabBarActiveTintColor: Colors.Pink,
+        tabBarInactiveTintColor: "lightgray",
+        tabBarActiveTintColor: "gray",
+        headerTintColor: "white",
       }}
     >
       <BottomTab.Screen
         name="FamilyScreen"
-        component={FamilyScreen}
+        component={CreateProfile}
         options={{
           title: "Family Chores",
           tabBarLabel: "Family",
@@ -86,7 +82,7 @@ function BottomOverview() {
       />
       <BottomTab.Screen
         name="ChatScreen"
-        component={ChatScreen}
+        component={Messages}
         options={{
           title: "Chat",
           tabBarLabel: "Chat",
@@ -133,8 +129,13 @@ function AuthenticatedStack() {
         headerShown: false,
       }}
     >
+      <Stack.Screen
+        name="BottomOverview"
+        component={BottomOverview}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen
@@ -148,12 +149,7 @@ function AuthenticatedStack() {
       <Stack.Screen
         name="AddFamilyMemberScreen"
         component={AddFamilyMemberScreen}
-      />
-      <Stack.Screen
-        name="BottomOverview"
-        component={BottomOverview}
-        options={{ headerShown: false }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

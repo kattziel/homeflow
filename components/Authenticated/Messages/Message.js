@@ -45,12 +45,14 @@ const Message = ({ date, message, person }) => {
 export default Message;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    paddingBottom: 10,
+  },
   contentContainer: {
     flexDirection: "row",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     borderColor: "lightgray",
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   senderContainer: {
     flex: 2,
@@ -58,13 +60,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     justifyContent: "center",
     alignItems: "center",
+
   },
   senderText: {
     color: "gray",
   },
   messageContainer: {
     flex: 6,
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   messageText: {
     fontSize: 20,
@@ -86,6 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderColor: "lightgray",
   },
   feedbackView: {
     justifyContent: "center",

@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   Pressable,
   Alert,
-  Modal,
+  Modal
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
+import CreateProfileModal from "../components/Modals/CreateProfileModal";
 import ProfilePhotoButton from "../components/UI/ProfilePhotoButton";
 
 const CreateProfile = () => {
@@ -28,6 +29,10 @@ const CreateProfile = () => {
   const [roleIsInvalid, setRoleIsInvalid] = useState(false);
 
   const navigation = useNavigation();
+
+
+const takePictureHandler = () => {};
+const uploadPictureHandler = () => {};
 
   useEffect(() => {
     setNameIsInvalid(false);
@@ -75,62 +80,53 @@ const CreateProfile = () => {
     navigation.navigate("AddFamilyMembersScreen");
   };
 
-  const moveBackwardsHandler = () => {
-    navigation.goBack();
-  };
-
-  const closeModalHandler = () => {
-    setModalIsVisible(false);
-  };
-
-  const takePictureHandler = () => {};
-  const uploadPictureHandler = () => {};
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalIsVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalIsVisible(!modalIsVisible);
-          }}
-        >
-          <View style={styles.modalCenteredView}>
-            <View style={styles.modalContainer}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalHeaderText}>
-                  Set your{"\n"}✨ profile photo ✨
-                </Text>
-              </View>
-              <View style={styles.modalButtonsContainer}>
-                <ProfilePhotoButton
-                  onPress={takePictureHandler}
-                  color="#91bfdb"
-                >
-                  Take{"\n"}a photo
-                </ProfilePhotoButton>
-                <ProfilePhotoButton
-                  onPress={uploadPictureHandler}
-                  color="#d391b3"
-                >
-                  Upload{"\n"}a photo
-                </ProfilePhotoButton>
-              </View>
-              <View style={styles.modalCloseButtonContainer}>
-                <Button onPress={closeModalHandler}>Close</Button>
-              </View>
-            </View>
-          </View>
-        </Modal>
-
         <View style={styles.headerContainer}>
           <Text style={styles.text}>Create your profile</Text>
         </View>
         <View style={styles.profilePhotoContainer}>
-          <Pressable onPress={() => setModalIsVisible(true)}>
+          <Pressable
+            onPress={() => {
+              setModalIsVisible(true);
+            }}
+          >
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalIsVisible}
+              onRequestClose={() => {
+                setModalIsVisible(!modalIsVisible);
+              }}
+            >
+              <View style={styles.modalCenteredView}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalHeader}>
+                    <Text style={styles.modalHeaderText}>
+                      Set your{"\n"}✨ profile photo ✨
+                    </Text>
+                  </View>
+                  <View style={styles.modalButtonsContainer}>
+                    <ProfilePhotoButton
+                      onPress={takePictureHandler}
+                      color="#91bfdb"
+                    >
+                      Take{"\n"}a photo
+                    </ProfilePhotoButton>
+                    <ProfilePhotoButton
+                      onPress={uploadPictureHandler}
+                      color="#d391b3"
+                    >
+                      Upload{"\n"}a photo
+                    </ProfilePhotoButton>
+                  </View>
+                  <View style={styles.modalCloseButtonContainer}>
+                    <Button onPress={() => {setModalIsVisible(false)}}>Close</Button>
+                  </View>
+                </View>
+              </View>
+            </Modal>
             <View style={styles.profilePhotoPicker}>
               <Ionicons name="camera-outline" size={40} color="lightgray" />
             </View>
@@ -162,7 +158,7 @@ const CreateProfile = () => {
           />
         </View>
         <View style={styles.buttonsContainer}>
-          <Button onPress={moveBackwardsHandler}>Back</Button>
+          <Button disabled={true}>Back</Button>
           <Button onPress={submitHandler}>Next</Button>
         </View>
       </ScrollView>
@@ -210,9 +206,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "darkgrey",
   },
-  // modal styling
   modalCenteredView: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(0,0,0,0.7)",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -224,6 +219,10 @@ const styles = StyleSheet.create({
     width: 280,
     height: 280,
     backgroundColor: "#EEEEEE",
+    shadowOffset: { width: -4, height: 10 },
+    shadowColor: "#white",
+    shadowOpacity: 0.5,
+    shadowRadius: 6,
   },
   modalHeaderText: {
     fontSize: 26,
@@ -236,6 +235,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
-  modalCloseButtonContainer: {
-  },
+  modalCloseButtonContainer: {},
 });

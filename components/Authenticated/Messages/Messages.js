@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,16 +6,23 @@ import {
   Pressable,
   TextInput,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Message from "./Message";
 
 const Messages = () => {
   const navigation = useNavigation();
+  const [enteredMessage, setEnteredMessage] = useState("");
+
+  const sendMessageHandler = (event) => {
+    setEnteredMessage(event.target.value);
+    console.log(enteredMessage);
+  }
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerContainer}>
           <View style={styles.headerTextContainer}>
             <Text style={styles.header}>Messages</Text>
@@ -24,7 +31,7 @@ const Messages = () => {
 
         <View style={styles.writeMessageContainer}>
           <TextInput style={styles.messageInput}>Write a message</TextInput>
-          <Pressable style={styles.buttonView}>
+          <Pressable style={styles.buttonView} onPress={sendMessageHandler}>
             <Text style={styles.buttonText}>Send</Text>
           </Pressable>
         </View>
@@ -35,12 +42,13 @@ const Messages = () => {
 
         <View style={styles.messagesContainer}>
           <Message />
+          <Message />
         </View>
 
         <View style={styles.infoContainer}>
           <Text style={styles.infoContainerText}>No more data to display</Text>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -70,6 +78,7 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   writeMessageContainer: {
+    flex: 1,
     flexDirection: "row",
     height: "10%",
     justifyContent: "center",
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   messageInput: {
-    flex: 1,
+    flex: 5,
     backgroundColor: "white",
     // height: "70%",
     marginHorizontal: 8,
@@ -87,13 +96,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   buttonView: {
-    borderWidth: 1,
+    flex: 1,
+    borderWidth: 2,
     borderRadius: 3,
     borderColor: "darkgreen",
     opacity: 0.3,
-    paddingVertical: 5,
+    // paddingVertical: 5,
     paddingHorizontal: 10,
-    borderWidth: 2,
+    paddingVertical: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     fontSize: 16,

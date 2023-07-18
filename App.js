@@ -21,7 +21,7 @@ import CalendarScreen from "./screens/BottomTabScreens/CalendarScreen";
 import FamilyScreen from "./screens/BottomTabScreens/FamilyScreen";
 import GroceriesScreen from "./screens/BottomTabScreens/GroceriesScreen";
 import ChatScreen from "./screens/BottomTabScreens/RewardsScreen";
-import TasksScreen from "./screens/BottomTabScreens/TasksScreen";
+import TasksScreen from "./screens/BottomTabScreens/Tasks/TasksScreen";
 import StartupScreen from "./screens/StartupScreen";
 import CreateProfile from "./screens/CreateProfile";
 import AddFamilyMembersScreen from "./screens/AddFamilyMembersScreen";
@@ -40,7 +40,7 @@ function BottomOverview() {
     <BottomTab.Navigator
       screenOptions={{
         headerShown: false,
-        headerStyle: {backgroundColor: "white"},
+        headerStyle: { backgroundColor: "white" },
         headerTintColor: "white",
         tabBarInactiveTintColor: "lightgray",
         tabBarActiveTintColor: "gray",
@@ -81,17 +81,6 @@ function BottomOverview() {
         }}
       />
       <BottomTab.Screen
-        name="ChatScreen"
-        component={Messages}
-        options={{
-          title: "Chat",
-          tabBarLabel: "Chat",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbox" size={size} color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
         name="GroceriesScreen"
         component={GroceriesScreen}
         options={{
@@ -99,6 +88,17 @@ function BottomOverview() {
           tabBarLabel: "Groceries",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="md-basket" size={size} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="ChatScreen"
+        component={Messages}
+        options={{
+          title: "Chat",
+          tabBarLabel: "Chat",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbox" size={size} color={color} />
           ),
         }}
       />

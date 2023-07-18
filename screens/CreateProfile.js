@@ -9,7 +9,7 @@ import {
   Modal,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useNavigate } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import Input from "../components/UI/Input";
@@ -17,20 +17,33 @@ import Button from "../components/UI/Button";
 import ProfilePhotoButton from "../components/UI/ProfilePhotoButton";
 
 const CreateProfile = () => {
+
+  const navigation = useNavigation();
+
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [enteredRole, setEnteredRole] = useState("");
-
-  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const [nameIsInvalid, setNameIsInvalid] = useState(false);
   const [ageIsInvalid, setAgeIsInvalid] = useState(false);
   const [roleIsInvalid, setRoleIsInvalid] = useState(false);
 
-  const navigation = useNavigation();
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  const nameInputHandler = (enteredText) => {
+    setEnteredName(enteredText);
+  };
+  const ageInputHandler = (enteredText) => {
+    setEnteredAge(enteredText);
+  };
+  const roleInputHandler = (enteredText) => {
+    setEnteredRole(enteredText);
+  };
+
 
   const takePictureHandler = () => {};
   const uploadPictureHandler = () => {};
+
 
   useEffect(() => {
     setNameIsInvalid(false);
@@ -43,6 +56,11 @@ const CreateProfile = () => {
   useEffect(() => {
     setRoleIsInvalid(false);
   }, [enteredRole]);
+
+  const moveForwardHandler = (...enteredValues) => {
+    console.log(...enteredValues);
+    navigation.navigate("AddFamilyMembersScreen");
+  };
 
   const submitHandler = () => {
     const nameIsValid =
@@ -72,10 +90,7 @@ const CreateProfile = () => {
       Alert.alert("Something went wrong", errorMessage);
       return;
     }
-  };
-
-  const moveForwardHandler = () => {
-    navigation.navigate("AddFamilyMembersScreen");
+    moveForwardHandler(enteredName, enteredAge, enteredRole);
   };
 
   const modalContainer = (
@@ -139,14 +154,16 @@ const CreateProfile = () => {
         <View style={styles.inputsContainer}>
           <Input
             value={enteredName}
-            onUpdateValue={setEnteredName}
+            onUpdateValue={nameInputHandler}
             placeholderText={"Name"}
             ioniconsName="person"
             isInvalid={nameIsInvalid}
+            // keyboardType="default"
+            // autoCapitalize="words"
           />
           <Input
             value={enteredAge}
-            onUpdateValue={setEnteredAge}
+            onUpdateValue={ageInputHandler}
             placeholderText={"Age"}
             ioniconsName="heart"
             keyboardType="numeric"
@@ -154,10 +171,12 @@ const CreateProfile = () => {
           />
           <Input
             value={enteredRole}
-            onUpdateValue={setEnteredRole}
+            onUpdateValue={roleInputHandler}
             placeholderText={"Role (optional)"}
             ioniconsName="people"
             isInvalid={roleIsInvalid}
+            // keyboardType="default"
+            // autoCapitalize="words"
           />
         </View>
         <View style={styles.buttonsContainer}>
@@ -189,7 +208,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   profilePhotoContainer: {
     justifyContent: "center",
@@ -208,7 +227,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
     marginTop: 10,
-    color: "darkgrey"
+    color: "darkgrey",
   },
   modalCenteredView: {
     backgroundColor: "rgba(0,0,0,0.7)",

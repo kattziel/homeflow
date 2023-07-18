@@ -95,7 +95,7 @@ function BottomOverview() {
         name="GroceriesScreen"
         component={GroceriesScreen}
         options={{
-          title: "Groceries List",
+          title: "Groceries",
           tabBarLabel: "Groceries",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="md-basket" size={size} color={color} />
@@ -134,7 +134,6 @@ function AuthenticatedStack() {
         component={BottomOverview}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen name="Messages" component={Messages} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
@@ -149,7 +148,7 @@ function AuthenticatedStack() {
       <Stack.Screen
         name="AddFamilyMemberScreen"
         component={AddFamilyMemberScreen}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }

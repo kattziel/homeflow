@@ -99,6 +99,8 @@ const LoginScreen = () => {
             placeholderText={"Email"}
             ioniconsName="mail"
             isInvalid={emailIsInvalid}
+            autoCapitalize={false}
+            autoComplete={false}
           />
           <Input
             value={enteredPassword}
@@ -107,6 +109,8 @@ const LoginScreen = () => {
             ioniconsName="key-outline"
             secure
             isInvalid={passwordIsInvalid}
+            autoCapitalize={false}
+            autoComplete={false}
           />
         </View>
         <View style={styles.buttonContainer}>

@@ -5,12 +5,13 @@ import {
   SafeAreaView,
   ScrollView,
   FlatList,
+  Pressable,
 } from "react-native";
-import { isValidElement, useState } from "react";
+import { useState } from "react";
 
 import Input from "../../../components/UI/Input";
 import Button from "../../../components/UI/Button";
-import TaskTile from "./TaskTile";
+// import TaskTile from "./TaskTile";
 
 function TasksScreen() {
   const [enteredTaskText, setEnteredTaskText] = useState("");
@@ -30,15 +31,27 @@ function TasksScreen() {
   const addTaskHandler = () => {
     setTasks((currentTasks) => [
       ...currentTasks,
-      { name: enteredTaskText, person: enteredPerson },
+      {
+        name: enteredTaskText,
+        person: enteredPerson,
+        id: Math.random().toString(),
+      },
     ]);
     setEnteredPerson("");
     setEnteredTaskText("");
   };
 
+  const deleteTaskHandler = (id) => {
+    console.log("pressed!");
+    console.log(id);
+    setTasks((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== id);
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.scrollviewContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.text}>Tasks</Text>
         </View>
@@ -64,40 +77,41 @@ function TasksScreen() {
         <View style={styles.buttonContainer}>
           <Button onPress={addTaskHandler}>Add</Button>
         </View>
+      </ScrollView>
 
-        <View style={styles.flatlistContainer}>
-          {tasks.length === 0 && (
-            <View style={styles.noTasksContainer}>
-              <Text style={styles.noTasksText}>No tasks found.</Text>
-              <Text style={styles.noTasksText}>Add first task.</Text>
-            </View>
-          )}
+      <ScrollView style={styles.flatlistContainer}>
+        {tasks.length === 0 && (
+          <View style={styles.noTasksContainer}>
+            <Text style={styles.noTasksText}>No tasks found.</Text>
+            <Text style={styles.noTasksText}>Add first task.</Text>
+          </View>
+        )}
 
-          {tasks.length > 0 && (
-            <FlatList
-              data={tasks}
-              keyExtractor={(item,index) => index.toString()}
-              renderItem={(task) => {
-                return (
-                  <View style={styles.flatlistItem}>
-                    <Text style={styles.flatlistItemText}>
-                      <Text style={styles.taskHeader}>To do task:</Text>{" "}
-                      {task.item.name}
-                    </Text>
-                    <Text style={styles.flatlistItemText}>
-                      <Text style={styles.taskHeader}>
-                        Person responsible:{" "}
-                      </Text>
-                      {task.item.person}
-                    </Text>
-                  </View>
-                );
-              }}
-              alwaysBounceVertical={false}
-              style={styles.flatlistContainer}
-            />
-          )}
-        </View>
+        {tasks.length > 0 && (
+          <FlatList
+            data={tasks}
+            keyExtractor={(item, index) => item.id.toString()}
+            renderItem={(task) => {
+              return (
+                <Pressable
+                  style={styles.flatlistItem}
+                  onPress={() => deleteTaskHandler(task.item.id)}
+                >
+                  <Text style={styles.flatlistItemText}>
+                    <Text style={styles.taskHeader}>To do task:</Text>{" "}
+                    {task.item.name}
+                  </Text>
+                  <Text style={styles.flatlistItemText}>
+                    <Text style={styles.taskHeader}>Person responsible: </Text>
+                    {task.item.person}
+                  </Text>
+                </Pressable>
+              );
+            }}
+            alwaysBounceVertical={false}
+            style={styles.flatlistContainer}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -133,9 +147,9 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 15,
   },
+  scrollviewContainer: {
+  },
   flatlistContainer: {
-    flex: 1,
-    // backgroundColor: "red",
   },
   flatlistItem: {
     borderWidth: 1,

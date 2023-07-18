@@ -1,18 +1,38 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView
+} from "react-native";
 
 function CalendarScreen() {
+
   return (
-    <View>
-      <Text style={styles.text}>CalendarScreen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.headerContainer}>
+          <Text style={styles.text}>Calendar</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 export default CalendarScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 20,
+    marginTop: 60,
+  },
+  headerContainer: {
+    paddingBottom: 20,
+  },
   text: {
-    color: "blue",
-    fontSize: 25,
+    fontSize: 28,
+    textAlign: "center",
   },
 });

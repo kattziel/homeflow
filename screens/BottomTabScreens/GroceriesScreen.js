@@ -3,8 +3,7 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  ScrollView,
-  Pressable,
+  ScrollView
 } from "react-native";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 
-import { Calendar } from "react-native-calendars";
+import { Calendar, CalendarList } from "react-native-calendars";
 
 const MyCalendar = () => {
   const vacation = {
@@ -19,88 +19,52 @@ const MyCalendar = () => {
   };
 
   const markedDates = {
-    "2023-07-15": { dots: [vacation, work, home] },
-    "2023-07-19": {
-      marked: true,
-      dotColor: "green",
-      selected: true,
-      selectedColor: "red",
-    },
-    "2023-07-22": { marked: true, dotColor: "green", selected: true },
-    "2023-07-30": { startingDay: true, color: "blue", textColor: "white" },
-    "2023-07-31": { endingDay: true, color: "blue", textColor: "white" },
+    "2023-07-15": { marked: true, dots: [vacation, work, home] },
+    "2023-07-19": { marked: true },
+    "2023-07-22": { marked: true },
+    "2023-07-30": { startingDay: true, color: "gray", textColor: "white" },
+    "2023-07-31": { endingDay: true, color: "gray", textColor: "white" },
   };
 
   return (
-    <Calendar
-      markingType={"period"}
-      markedDates={markedDates}
-      minDate={"2023-01-01"}
-      onDayPress={handleDayPress}
-      onDayLongPress={handleDayLongPress}
-      hideExtraDays={true}
-      disableAllTouchEventsForDisabledDays={true}
-      enableSwipeMonths={true}
-      markingType={"multi-dot"}
-      // dayComponent={(e) => {
-      //   console.log("e" - e);
-      //   return (
-      //     <View style={{width: 40, height: 40, backgroundColor: "lightpink", justifyContent: "center", alignItems: "center"}}>
-      //       <Text>{e.date.day}</Text>
-      //     </View>
-      //   );
-      // }}
-      // disableArrowLeft
-      // disableArrowRight
-      // hideArrows
-      // hideDayNames
-      // hideExtraDays
-      // minDate={"2023-07-01"}
-      // maxDate={"2023-07-31"}
-      // firstDay={1}
-      // current={"2023-06-01"}
-      // onDayPress={(e)=>{
-      //   console.log(e);
-      // }}
-      // onDayLongPress={(e) => {
-      //   console.log("e - ", e);
-      // }}
-      // onMonthChange={(e) => {
-      //   console.log("e - ", e);
-      // }}
+    <View style={styles.calendarContainer}>
+      <Calendar
+        theme={{
+          backgroundColor: "#ffffff",
+          calendarBackground: "#ffffff",
+          textSectionTitleColor: "#b6c1cd",
+          textSectionTitleDisabledColor: "#d9e1e8",
+          selectedDayBackgroundColor: "#00adf5",
+          selectedDayTextColor: "#ffffff",
+          todayTextColor: "#00adf5",
+          dayTextColor: "#2d4150",
+          textDisabledColor: "#d9e1e8",
+          dotColor: "#00adf5",
+          selectedDotColor: "#ffffff",
+          arrowColor: "orange",
+          disabledArrowColor: "#d9e1e8",
+          monthTextColor: "darkgray",
+          indicatorColor: "blue",
+          textDayFontWeight: "300",
+          textMonthFontWeight: "bold",
+          textDayHeaderFontWeight: "300",
+          textDayFontSize: 16,
+          textMonthFontSize: 16,
+          textDayHeaderFontSize: 16,
+        }}
+        markingType={"period"}
+        markedDates={markedDates}
+        minDate={"2023-01-01"}
+        onDayPress={handleDayPress}
+        onDayLongPress={handleDayLongPress}
+        hideExtraDays={true}
+        disableAllTouchEventsForDisabledDays={true}
+        enableSwipeMonths={true}
+        markingType={"period"}
+        style={{ width: "100%" }}
+      />
+    </View>
 
-      style={{ width: "100%" }}
-    />
-    // <View style={styles.calendarContainer}>
-    //   <Calendar
-    //     // Marked dates and custom theme
-    //     markedDates={markedDates}
-    //     theme={{
-    //       calendarBackground: "#ffffff",
-    //       textSectionTitleColor: "black",
-    //       selectedDayBackgroundColor: "#00adf5",
-    //       selectedDayTextColor: "#ffffff",
-    //       todayTextColor: "#00adf5",
-    //       dayTextColor: "black",
-    //       textDisabledColor: "#d9e1e8",
-    //       dotColor: "#00adf5",
-    //       selectedDotColor: "#ffffff",
-    //       arrowColor: "#00adf5",
-    //       monthTextColor: "#00adf5",
-    //       // textDayFontFamily: "monospace",
-    //       // textMonthFontFamily: "monospace",
-    //       // textDayHeaderFontFamily: "monospace",
-    //       textDayFontWeight: "500",
-    //       textMonthFontWeight: "bold",
-    //       textDayHeaderFontWeight: "300",
-    //       textDayFontSize: 16,
-    //       textMonthFontSize: 20,
-    //       textDayHeaderFontSize: 14,
-    //     }}
-    //     // Customize onPress event
-    //     onDayPress={(day) => console.log("Selected day: ", day)}
-    //   />
-    // </View>
   );
 };
 
@@ -132,6 +96,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   calendarContainer: {
-    flex: 1,
+    // flex: 1,
+    // width: "90%",
+    // height: "90%"
   },
 });

@@ -31,6 +31,7 @@ import AddFamilyMemberScreen from "./screens/AddFamilyMemberScreen";
 import Settings from "./components/Authenticated/Settings/Settings";
 import TaskCategories from "./components/Authenticated/Tasks/TaskCategories";
 import Messages from "./components/Authenticated/Messages/Messages";
+import IconButton from "./components/UI/IconButton";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -185,6 +186,7 @@ function Root() {
 }
 
 export default function App() {
+  
   return (
     <>
       <StatusBar style="dark" />

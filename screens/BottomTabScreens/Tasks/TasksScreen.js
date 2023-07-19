@@ -51,7 +51,7 @@ function TasksScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollviewContainer}>
+      <View style={styles.scrollviewContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.text}>Tasks</Text>
         </View>
@@ -77,7 +77,7 @@ function TasksScreen() {
         <View style={styles.buttonContainer}>
           <Button onPress={addTaskHandler}>Add</Button>
         </View>
-      </ScrollView>
+      </View>
 
       <ScrollView style={styles.flatlistContainer}>
         {tasks.length === 0 && (

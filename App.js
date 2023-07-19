@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 
+import { useNavigation } from "@react-navigation/native";
 import * as native from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "./constants/Colors";
 
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
@@ -36,16 +36,27 @@ import IconButton from "./components/UI/IconButton";
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
-function BottomOverview() {
+function BottomOverview({ navigation }) {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        headerShown: false,
+        // headerShown: false,
         headerStyle: { backgroundColor: "white" },
         headerTintColor: "white",
         tabBarInactiveTintColor: "lightgray",
         tabBarActiveTintColor: "gray",
         headerTintColor: "white",
+        headerBackgroundColor: "red",
+        headerLeft: () => (
+          <View style={styles.iconSettingsButton}>
+            <IconButton
+              icon="settings-outline"
+              size={20}
+              color="gray"
+              onPress={() => navigation.navigate("Settings")}
+            />
+          </View>
+        ),
       }}
     >
       <BottomTab.Screen
@@ -124,6 +135,7 @@ function AuthStack() {
 
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
+  const navigation = useNavigation();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -135,7 +147,24 @@ function AuthenticatedStack() {
         component={BottomOverview}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerLeft: () => (
+            <View style={styles.iconButton}>
+              <IconButton
+                icon="arrow-back-outline"
+                size={20}
+                color="gray"
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          ),
+        }}
+      />
       <Stack.Screen name="TaskCategories" component={TaskCategories} />
       <Stack.Screen name="CreateProfile" component={CreateProfile} />
       <Stack.Screen
@@ -186,7 +215,6 @@ function Root() {
 }
 
 export default function App() {
-  
   return (
     <>
       <StatusBar style="dark" />
@@ -201,4 +229,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  iconButton: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  iconSettingsButton: {
+    flex: 1,
+    justifyContent: "center",
+    paddingLeft: 10
+  }
 });

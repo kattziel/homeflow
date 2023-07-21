@@ -8,17 +8,32 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Message from "./Message";
 
 const Messages = () => {
-  const navigation = useNavigation();
   const [enteredMessage, setEnteredMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
-  const sendMessageHandler = (event) => {
-    setEnteredMessage(event.target.value);
-    console.log(enteredMessage);
-  }
+  const handleMessageSend = () => {
+    if (enteredMessage.trim() === "") return;
+    const date = new Date();
+    const hour = date.toLocaleTimeString();
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        date: date.toISOString(),
+        hour,
+        message: enteredMessage,
+        person: "You",
+      },
+    ]);
+    setEnteredMessage("");
+  };
+
+  // const sendMessageHandler = (enteredValue) => {
+  //   setEnteredMessage(enteredValue);
+  //   console.log(enteredValue);
+  // }
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -30,14 +45,28 @@ const Messages = () => {
         </View>
 
         <View style={styles.writeMessageContainer}>
-          <TextInput style={styles.messageInput}>Write a message</TextInput>
-          <Pressable style={styles.buttonView} onPress={sendMessageHandler}>
+          <TextInput
+            style={styles.messageInput}
+            placeholder={"Write your message"}
+            placeholderTextColor="#e6e5e5fc"
+            value={enteredMessage}
+            onChangeText={text => setEnteredMessage(text)}
+          ></TextInput>
+          <Pressable style={styles.buttonView} onPress={handleMessageSend}>
             <Text style={styles.buttonText}>Send</Text>
           </Pressable>
         </View>
+
         <View style={styles.messagesContainer}>
-          <Message />
-          <Message />
+          {messages.map((msg, index) => (
+            <Message
+              key={index}
+              date={msg.date}
+              hour={msg.hour}
+              message={msg.message}
+              person={msg.person}
+            />
+          ))}
         </View>
 
         <View style={styles.infoContainer}>
@@ -62,7 +91,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: "row",
-    height: "10%",
+    height: "15%",
     justifyContent: "center",
     alignItems: "center",
     borderBottomWidth: 0.3,

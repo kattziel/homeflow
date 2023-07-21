@@ -1,25 +1,25 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const Message = ({ date, hour, message, person }) => {
+const Message = ({date, hour, message, person}) => {
   return (
     <View style={styles.container}>
       <View style={styles.dateContainer}>
-        <Text style={styles.date}>Date: {date}</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.senderContainer}>
           <Ionicons name="happy-outline" size={28} color="pink"></Ionicons>
-          <Text style={styles.senderText}>Person:{person}</Text>
+          <Text style={styles.senderText}>{person}</Text>
         </View>
 
         <View style={styles.messageContainer}>
           <View style={styles.messageView}>
-            <Text style={styles.messageText}>Message:{message}</Text>
+            <Text style={styles.messageText}>{message}</Text>
           </View>
 
           <View style={styles.hourContainer}>
-            <Text style={styles.hour}>Hour:{hour}</Text>
+            <Text style={styles.hour}>{hour}</Text>
           </View>
         </View>
 

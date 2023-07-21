@@ -35,11 +35,6 @@ const Messages = () => {
             <Text style={styles.buttonText}>Send</Text>
           </Pressable>
         </View>
-
-        <View style={styles.dateContainer}>
-          <Text style={styles.date}> TUE 25 APR </Text>
-        </View>
-
         <View style={styles.messagesContainer}>
           <Message />
           <Message />
@@ -110,16 +105,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: "darkgreen",
-  },
-  dateContainer: {
-    paddingVertical: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ededed",
-  },
-  date: {
-    color: "#9c9b9bff",
-    fontSize: 16,
   },
   infoContainer: {
     borderTopWidth: 1,

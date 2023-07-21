@@ -1,22 +1,25 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const Message = ({ date, message, person }) => {
+const Message = ({ date, hour, message, person }) => {
   return (
     <View style={styles.container}>
+      <View style={styles.dateContainer}>
+        <Text style={styles.date}>Date: {date}</Text>
+      </View>
       <View style={styles.contentContainer}>
         <View style={styles.senderContainer}>
           <Ionicons name="happy-outline" size={28} color="pink"></Ionicons>
-          <Text style={styles.senderText}>You</Text>
+          <Text style={styles.senderText}>Person:{person}</Text>
         </View>
 
         <View style={styles.messageContainer}>
           <View style={styles.messageView}>
-            <Text style={styles.messageText}>Testing chat</Text>
+            <Text style={styles.messageText}>Message:{message}</Text>
           </View>
 
-          <View style={styles.dateContainer}>
-            <Text style={styles.date}>16:10</Text>
+          <View style={styles.hourContainer}>
+            <Text style={styles.hour}>Hour:{hour}</Text>
           </View>
         </View>
 
@@ -60,7 +63,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     justifyContent: "center",
     alignItems: "center",
-
   },
   senderText: {
     color: "gray",
@@ -73,7 +75,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "gray",
   },
+  dateContainer: {
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ededed",
+  },
   date: {
+    color: "#9c9b9bff",
+    fontSize: 16,
+  },
+  hour: {
     fontSize: 15,
     color: "gray",
   },
